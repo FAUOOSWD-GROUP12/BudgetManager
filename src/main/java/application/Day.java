@@ -1,4 +1,4 @@
-package driver;
+package main.java.application;
 
 public class Day{
 
