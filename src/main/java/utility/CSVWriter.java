@@ -1,9 +1,11 @@
 package main.java.utility;
 
+import main.java.application.Day;
+import main.java.application.Item;
+
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Writer;
-import java.util.Arrays;
 import java.util.List;
 
 public class CSVWriter {
@@ -24,11 +26,27 @@ public class CSVWriter {
     }
 
     public static void main(String[] args) {
+
+        Day dayTest = new Day();
+        dayTest.addItem("Groceries", new Item("Bread", 5));
+        dayTest.addItem("Education", new Item("Book", 100));
+        dayTest.addItem("Amazon", new Item("Toilet Paper", 20));
+        dayTest.addItem("Groceries", new Item("Milk", 5));
+        Day dayTest1 = new Day();
+        dayTest1.addItem("Groceries1", new Item("Bread1", 5));
+        dayTest1.addItem("Education1", new Item("Book1", 100));
+        dayTest1.addItem("Amazon1", new Item("Toilet Paper1", 20));
+        dayTest1.addItem("Groceries1", new Item("Milk1", 5));
+        Day dayEmptyTest = new Day();
+
+
         String csvFile = "src/main/resources/Test.csv";
 
         try {
             FileWriter writer = new FileWriter(csvFile);
-            CSVWriter.writeLine(writer, Arrays.asList("a", "b", "c", "d"));
+            CSVWriter.writeLine(writer, DayFormatter.formatDayToCSV(dayTest));
+            CSVWriter.writeLine(writer,DayFormatter.formatDayToCSV(dayTest1));
+            CSVWriter.writeLine(writer,DayFormatter.formatDayToCSV(dayEmptyTest));
             writer.flush();
             writer.close();
         } catch (IOException e) {
