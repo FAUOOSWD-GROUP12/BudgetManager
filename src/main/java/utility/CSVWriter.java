@@ -40,13 +40,20 @@ public class CSVWriter {
         Day dayEmptyTest = new Day();
 
 
-        String csvFile = "src/main/resources/Test.csv";
+        String csvFile = "src/main/resources/Test2020.csv";
 
         try {
             FileWriter writer = new FileWriter(csvFile);
+            for(int i = 0; i < 366; i++){
+                Day aDay = new Day();
+                aDay.addItem("test", new Item("TESTING", 100));
+                CSVWriter.writeLine(writer, DayFormatter.formatDayToCSV(aDay));
+            }
+            /*
             CSVWriter.writeLine(writer, DayFormatter.formatDayToCSV(dayTest));
             CSVWriter.writeLine(writer,DayFormatter.formatDayToCSV(dayTest1));
             CSVWriter.writeLine(writer,DayFormatter.formatDayToCSV(dayEmptyTest));
+            */
             writer.flush();
             writer.close();
         } catch (IOException e) {

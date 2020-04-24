@@ -7,7 +7,7 @@ public class Item{
         this.price = aPrice;
     }
 
-    public float getPrice() {
+    public double getPrice() {
         return price;
     }
 
@@ -21,5 +21,5 @@ public class Item{
     }
 
     private String name;
-	private float price;
+	private double price;
 }

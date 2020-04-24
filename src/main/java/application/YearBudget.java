@@ -2,6 +2,7 @@
 package main.java.application;
 
 import java.time.Year;
+import java.util.HashMap;
 
 /**
  *
@@ -11,8 +12,8 @@ public class YearBudget {
     /**
      * Initializes 12 months with corresponding number of days for the current year
      */
-    public YearBudget(){
-        currentYear = Year.now();
+    public YearBudget(Year aYear){
+        currentYear = aYear;
         Months = new Month[13];
         String tempName;
         int tempCount = 0;
@@ -22,17 +23,48 @@ public class YearBudget {
             Months[i] = new Month(tempCount,tempName);
         }
     }
-    public static void main(String [] args){
 
+    public HashMap<String, Double> getYearlyCategorySpending(){
+        HashMap<String, Double> yearCategorySpending = new HashMap<String, Double>();
+
+        for(int i = 1;i < 13;i++){
+            this.Months[i].getMonthlhyCategorySpending(yearCategorySpending);
+        }
+        return yearCategorySpending;
+    }
+
+    public Double getYearlySpending(){
+        Double total = 0.0;
+        for(int i = 1;i < 13;i++){
+            total += this.Months[i].getMonthlySpending();
+        }
+
+        return total;
+    }
+
+    public Month getMonth(int index){
+        return Months[index];
+    }
+
+    public Month[] getMonths(){
+        return Months;
+    }
+
+    public String getYear(){
+        return currentYear.toString();
+    }
+
+    public static void main(String [] args){
     }
     /**
      * Prints months with corresponding number of days
      */
     public void testMonths(){
 
-        for(int i = 1;i < 13; i++){
+        for(int i = 1; i < 13; i++){
             System.out.println(this.Months[i].getMonthName());
             System.out.println(this.Months[i].getDaysInMonth());
+
         }
     }
 

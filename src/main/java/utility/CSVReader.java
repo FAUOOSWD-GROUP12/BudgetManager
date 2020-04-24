@@ -1,22 +1,22 @@
 package main.java.utility;
 
-import javax.imageio.stream.ImageInputStream;
+import main.java.application.Day;
+import main.java.application.Item;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.io.Reader;
 
 public class CSVReader {
-    public static String readLine(BufferedReader r){
-        try{
-            return r.readLine();
-        }catch (IOException e){
-            e.printStackTrace();
-            return null;
-        }
+    public static String[] readLine(BufferedReader r) throws IOException{
+        String csvDay = r.readLine();
+        String splitByComma = ",";
+        String[] aDay = csvDay.split(splitByComma);
+        return aDay;
     }
 
     public static void main(String[] args) {
+        /*
         String csvFile = "src/main/resources/Test.csv";
         String row = "";
         int i = 0;
@@ -29,5 +29,7 @@ public class CSVReader {
         } catch (IOException e){
             e.printStackTrace();
         }
+
+         */
     }
 }

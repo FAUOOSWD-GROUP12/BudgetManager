@@ -1,5 +1,12 @@
 package main.java.application;
 
+import main.java.utility.CSVWriter;
+import main.java.utility.DayFormatter;
+import main.java.gui.*;
+import javax.swing.*;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.time.Year;
 
 //needs to import:
@@ -11,12 +18,35 @@ import java.time.Year;
 public class BudgetManager {
 
     public BudgetManager(){
-        thisYear = Year.now();
+        File DEFAULT_FILE = new File("src/main/resources/Test" + DEFAULT_YEAR.toString() + ".csv");
+        try {
+            if(DEFAULT_FILE.createNewFile()){
+                try {
+                    FileWriter writer = new FileWriter(DEFAULT_FILE);
+                    Day blankDay = new Day();
+                    for (int i = 0; i < DEFAULT_YEAR.length(); i++) {
+                        //Day aDay = new Day();
+                        //aDay.addItem("test", new Item("TESTING", 100));
+                        CSVWriter.writeLine(writer, DayFormatter.formatDayToCSV(blankDay));
+                    }
+                    writer.flush();
+                    writer.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }catch (IOException e) {
+            e.printStackTrace();
+        }
+        aYearLoader = new YearLoader();
+        aYearBudget = aYearLoader.getYearFromFile(DEFAULT_YEAR);
 
     }
-    private void loadYear(){
 
+    public YearBudget getYear(){
+        return this.aYearBudget;
     }
+
     public static void main(String[] args) {
 
         //Check if there is a file to read from and read from that file
@@ -25,7 +55,13 @@ public class BudgetManager {
         //finished with application:
         //overwrite old file with new data
         //close application
+        BudgetManager bm = new BudgetManager();
+        JFrame mainApp = new MainMenuGUI("Budget Manager", bm.getYear());
+
     }
 
-    private final Year thisYear;
+    private YearBudget aYearBudget;
+    private YearLoader aYearLoader;
+    private static final Year DEFAULT_YEAR = Year.now();
+
 }

@@ -43,6 +43,7 @@ public class DayFormatter {
     }
 
     public static void main(String[] args) {
+        /*
         Day dayTest = new Day();
         System.out.println(dayTest.purchasesIsEmpty());
         dayTest.addItem("A", new Item("food", 20));
@@ -73,5 +74,7 @@ public class DayFormatter {
         for(String line : rows){
             System.out.println(DayFormatter.formatCSVtoDay(line));
         }
+
+         */
     }
 }

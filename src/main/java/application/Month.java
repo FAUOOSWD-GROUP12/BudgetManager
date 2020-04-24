@@ -3,6 +3,7 @@ package main.java.application;
 import main.java.application.Day;
 import main.java.application.Item;
 
+import java.util.HashMap;
 import java.util.Hashtable;
 
 public class Month{
@@ -17,25 +18,33 @@ public class Month{
         this.daysInMonth = daysInMonth;
         this.days = new Day[daysInMonth + 1];
     }
+
     /**
-     * Iterates through each day in the month, and adds up total spending per category in a Hashtable.
-     * Hashtable key: category, value: $ spent per category
-     * @return Hashtable containing spending for each category
+     *
+     * Iterates through each day in the month, and adds up total spending per category in a HashMap provided.
+     * @param HashMapParam contains category:spending, whose values will be updates for the entire month
+     * @return HashMap containing spending for each category
      */
-    public Hashtable getCategorySpending(){
-        Hashtable<String, Double> categorySpending = new Hashtable<String, Double>();
+    public void getMonthlhyCategorySpending(HashMap<String, Double> HashMapParam){
+        for(int i = 1; i <= daysInMonth; i++){
+            if(days[i] != null){
+                days[i].getDailyCategorySpending(HashMapParam);
+            }
+        }
+    }
+
+    public Double getMonthlySpending(){
+        Double total = 0.0;
 
         for(int i = 1; i <= daysInMonth; i++){
             if(days[i] != null){
-
-                // GET SPENDING FOR THE DAY AND ADD IT TO THE HASHTABLE
-
+                total += days[i].getCostOfPurchases();
             }
         }
 
-
-        return categorySpending;
+        return total;
     }
+
     /**
      * Add item to specified day. If day is null, initialize day and then add item
      * @param item
@@ -51,7 +60,6 @@ public class Month{
             days[dayNum].addItem(category, item);
         }
     }
-
 
     public int getDaysInMonth(){
         return this.daysInMonth;
