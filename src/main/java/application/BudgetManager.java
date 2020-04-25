@@ -19,26 +19,6 @@ import java.time.Year;
 public class BudgetManager {
 
     public BudgetManager() {
-        /*
-        File DEFAULT_FILE = new File("src/main/resources/Test" + DEFAULT_YEAR.toString() + ".csv");
-        try {
-            if(DEFAULT_FILE.createNewFile()){
-                try {
-                    FileWriter writer = new FileWriter(DEFAULT_FILE);
-                    Day blankDay = new Day();
-                    for (int i = 0; i < DEFAULT_YEAR.length(); i++) {
-                        CSVWriter.writeLine(writer, DayFormatter.formatDayToCSV(blankDay));
-                    }
-                    writer.flush();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }catch (IOException e) {
-            e.printStackTrace();
-        }
-
-         */
         aYearLoader = new YearLoader(DEFAULT_YEAR);
         aYearBudget = aYearLoader.getYearFromFile(DEFAULT_YEAR);
 
@@ -63,7 +43,7 @@ public class BudgetManager {
         //close application
         BudgetManager bm = new BudgetManager();
         JFrame mainApp = new MainMenuGUI("Budget Manager", bm.getYear(), bm.getLoader());
-        bm.aYearLoader.saveYearToFile();
+
 
     }
 

@@ -58,20 +58,20 @@ public class YearLoader {
         System.out.println("Saving Year: " + yearToLoad.toString() + "to" + CSVFile.toString());
         List<Day> daysToSave = loadedYear.getAllDays();
         try {
-            if (CSVFile.createNewFile()) {
-                try {
-                    FileWriter writer = new FileWriter(CSVFile);
-                    for (Day d : daysToSave) {
-                        CSVWriter.writeLine(writer, DayFormatter.formatDayToCSV(d));
-                    }
-                    writer.flush();
-                } catch (IOException e) {
-                    e.printStackTrace();
+            CSVFile.createNewFile();
+            try {
+                FileWriter writer = new FileWriter(CSVFile);
+                for (Day d : daysToSave) {
+                    CSVWriter.writeLine(writer, DayFormatter.formatDayToCSV(d));
                 }
+                writer.flush();
+            } catch (IOException e) {
+                e.printStackTrace();
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
+
     }
 
     private File CSVFile;

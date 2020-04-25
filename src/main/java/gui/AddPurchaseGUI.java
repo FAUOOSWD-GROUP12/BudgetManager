@@ -17,8 +17,6 @@ public class AddPurchaseGUI {
         JFrame frame = new JFrame("Add Purchase");
         $$$setupUI$$$();
 
-        Month[] m = months;
-
         ComboBoxModel monthModel = new DefaultComboBoxModel(monthComboArray);
         monthComboBox.setModel(monthModel);
 
@@ -49,7 +47,8 @@ public class AddPurchaseGUI {
                         + " Category:" + categorySelected
                         + " Month Selected:" + monthSelected
                         + " Day Selected:" + daySelected);
-             m[monthSelected].addItemToDay(categorySelected, new Item(itemName, itemPrice), daySelected);
+                System.out.println(months[monthSelected].toString());
+                months[monthSelected].addItemToDay(categorySelected, new Item(itemName, itemPrice), daySelected);
             }
         });
 
