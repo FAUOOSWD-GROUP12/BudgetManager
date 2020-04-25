@@ -2,7 +2,7 @@ package main.java.application;
 
 public class Item{
 
-    public Item(String aName, float aPrice){
+    public Item(String aName, double aPrice){
         this.name = aName;
         this.price = aPrice;
     }

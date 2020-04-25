@@ -2,7 +2,9 @@
 package main.java.application;
 
 import java.time.Year;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 /**
  *
@@ -28,7 +30,7 @@ public class YearBudget {
         HashMap<String, Double> yearCategorySpending = new HashMap<String, Double>();
 
         for(int i = 1;i < 13;i++){
-            this.Months[i].getMonthlhyCategorySpending(yearCategorySpending);
+            this.Months[i].getMonthlyCategorySpending(yearCategorySpending);
         }
         return yearCategorySpending;
     }
@@ -52,6 +54,14 @@ public class YearBudget {
 
     public String getYear(){
         return currentYear.toString();
+    }
+
+    public List<Day> getAllDays(){
+        List<Day> allDays = new ArrayList<>();
+        for(int i = 1; i < 13; i++){
+            allDays.addAll(Months[i].daysInThisMonth());
+        }
+        return allDays;
     }
 
     public static void main(String [] args){

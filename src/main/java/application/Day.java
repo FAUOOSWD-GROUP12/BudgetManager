@@ -46,7 +46,7 @@ public class Day {
     }
 
     public ArrayList<String> getCategories() {
-        return (ArrayList<String>) categories.clone();
+        return categories;
     }
 
     public boolean purchasesIsEmpty() {

@@ -3,8 +3,8 @@ package main.java.application;
 import main.java.application.Day;
 import main.java.application.Item;
 
-import java.util.HashMap;
-import java.util.Hashtable;
+import java.lang.reflect.Array;
+import java.util.*;
 
 public class Month{
 
@@ -17,6 +17,9 @@ public class Month{
         this.monthName = monthName;
         this.daysInMonth = daysInMonth;
         this.days = new Day[daysInMonth + 1];
+        for(int i = 1; i < daysInMonth + 1; i++){
+            days[i] = new Day();
+        }
     }
 
     /**
@@ -25,7 +28,7 @@ public class Month{
      * @param HashMapParam contains category:spending, whose values will be updates for the entire month
      * @return HashMap containing spending for each category
      */
-    public void getMonthlhyCategorySpending(HashMap<String, Double> HashMapParam){
+    public void getMonthlyCategorySpending(HashMap<String, Double> HashMapParam){
         for(int i = 1; i <= daysInMonth; i++){
             if(days[i] != null){
                 days[i].getDailyCategorySpending(HashMapParam);
@@ -67,6 +70,12 @@ public class Month{
 
     public String getMonthName(){
         return this.monthName;
+    }
+
+    public List<Day> daysInThisMonth() {
+        ArrayList<Day> allDays = new ArrayList<>();
+        allDays.addAll(Arrays.asList(days).subList(1, days.length));
+        return allDays;
     }
 
     private Day[] days;
