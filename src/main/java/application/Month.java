@@ -72,6 +72,14 @@ public class Month {
         return this.monthName;
     }
 
+    public ArrayList<String> getCategoriesInMonth(){
+        ArrayList<String> categories = new ArrayList<>();
+        for(int i = 1; i < daysInMonth; i++){
+            categories.addAll(days[i].getCategories());
+        }
+        return null;
+    }
+
     public List<Day> daysInThisMonth() {
         ArrayList<Day> allDays = new ArrayList<>();
         allDays.addAll(Arrays.asList(days).subList(1, days.length));

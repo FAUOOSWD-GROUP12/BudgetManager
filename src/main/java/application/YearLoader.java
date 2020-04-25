@@ -77,5 +77,4 @@ public class YearLoader {
     private File CSVFile;
     private Year yearToLoad;
     private YearBudget loadedYear;
-    private FileWriter writer;
 }
