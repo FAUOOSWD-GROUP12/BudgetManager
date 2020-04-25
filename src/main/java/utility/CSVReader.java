@@ -8,7 +8,7 @@ import java.io.FileReader;
 import java.io.IOException;
 
 public class CSVReader {
-    public static String[] readLine(BufferedReader r) throws IOException{
+    public static String[] readLine(BufferedReader r) throws IOException {
         String csvDay = r.readLine();
         String splitByComma = ",";
         String[] aDay = csvDay.split(splitByComma);

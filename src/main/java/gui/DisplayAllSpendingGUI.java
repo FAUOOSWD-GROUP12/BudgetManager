@@ -1,5 +1,3 @@
-package main.java.gui;
-
 import main.java.application.YearBudget;
 
 import javax.swing.*;
@@ -78,6 +76,3 @@ public class DisplayAllSpendingGUI extends JFrame{
                 };
 
         return dataModel;
-
-    }
-}
