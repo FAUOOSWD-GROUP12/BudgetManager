@@ -1,8 +1,8 @@
 package main.java.application;
 
-public class Item{
+public class Item {
 
-    public Item(String aName, float aPrice){
+    public Item(String aName, double aPrice) {
         this.name = aName;
         this.price = aPrice;
     }
@@ -17,9 +17,9 @@ public class Item{
 
     @Override
     public String toString() {
-        return  name + ' ' + price;
+        return name + ' ' + price;
     }
 
     private String name;
-	private double price;
+    private double price;
 }

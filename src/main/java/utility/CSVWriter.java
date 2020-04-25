@@ -14,8 +14,8 @@ public class CSVWriter {
     public static void writeLine(Writer w, List<String> values) throws IOException {
         StringBuilder sb = new StringBuilder();
         boolean first = true;
-        for (String value : values){
-            if (!first){
+        for (String value : values) {
+            if (!first) {
                 sb.append(DEFAULT_SEPARATOR);
             }
             sb.append(value);
@@ -44,7 +44,7 @@ public class CSVWriter {
 
         try {
             FileWriter writer = new FileWriter(csvFile);
-            for(int i = 0; i < 366; i++){
+            for (int i = 0; i < 366; i++) {
                 Day aDay = new Day();
                 aDay.addItem("test", new Item("TESTING", 100));
                 CSVWriter.writeLine(writer, DayFormatter.formatDayToCSV(aDay));
