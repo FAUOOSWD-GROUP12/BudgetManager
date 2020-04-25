@@ -10,14 +10,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DayFormatter {
-    public static List<String> formatDayToCSV(Day d){
+    public static List<String> formatDayToCSV(Day d) {
         System.out.println("Making String list");
         List<String> values = new ArrayList<>();
         System.out.println("For Loop Starting");
         System.out.println(d.toString());
-        for(String category: d.getCategories()){
+        for (String category : d.getCategories()) {
             ArrayList<Item> items = d.getItems(category);
-            for(Item item: items){
+            for (Item item : items) {
                 values.add(category);
                 values.add(item.getName());
                 StringBuilder sb = new StringBuilder();
@@ -27,12 +27,13 @@ public class DayFormatter {
         }
         return values;
     }
-    public static Day formatCSVtoDay(String csvDay){
+
+    public static Day formatCSVtoDay(String csvDay) {
         String splitByComma = ",";
         String[] aDay = csvDay.split(splitByComma);
         Day newDay = new Day();
-        if (aDay.length % 3 == 0){
-            for(int i = 0; i < aDay.length; i++){
+        if (aDay.length % 3 == 0) {
+            for (int i = 0; i < aDay.length; i++) {
                 String category = aDay[i];
                 i++;
                 String itemName = aDay[i];

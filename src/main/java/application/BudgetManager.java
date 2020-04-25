@@ -3,6 +3,7 @@ package main.java.application;
 import main.java.utility.CSVWriter;
 import main.java.utility.DayFormatter;
 import main.java.gui.*;
+
 import javax.swing.*;
 import java.io.File;
 import java.io.FileWriter;
@@ -17,7 +18,7 @@ import java.time.Year;
 //
 public class BudgetManager {
 
-    public BudgetManager(){
+    public BudgetManager() {
         /*
         File DEFAULT_FILE = new File("src/main/resources/Test" + DEFAULT_YEAR.toString() + ".csv");
         try {
@@ -43,10 +44,12 @@ public class BudgetManager {
 
     }
 
-    public YearLoader getLoader(){return this.aYearLoader;}
+    public YearLoader getLoader() {
+        return this.aYearLoader;
+    }
 
 
-    public YearBudget getYear(){
+    public YearBudget getYear() {
         return this.aYearBudget;
     }
 

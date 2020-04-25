@@ -1,6 +1,7 @@
 package main.java.gui;
 
 import main.java.application.Month;
+import main.java.application.YearBudget;
 import main.java.application.YearLoader;
 
 import javax.swing.*;
@@ -17,15 +18,16 @@ public class MainMenuButtons {
     private JButton profileSettingsButton;
     private JPanel mainMenuButtons;
 
-    public MainMenuButtons(Month[] months) {
+    public MainMenuButtons(YearBudget workingYear) {
         /**
          * Action listener to open the add Item menu.
          */
+        final YearBudget y = workingYear;
         addItemButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 System.out.println("Add Item Button Pressed");
-                new AddPurchaseGUI(months, new String[]{"a", "b", "c"});
+                new AddPurchaseGUI(y.getMonths(), new String[]{"a", "b", "c"});
             }
         });
         manageCategoriesButton.addActionListener(new ActionListener() {
