@@ -1,3 +1,5 @@
+package main.java.gui;
+
 import main.java.application.YearBudget;
 
 import javax.swing.*;
@@ -46,10 +48,10 @@ public class DisplayAllSpendingGUI extends JFrame{
         return categorySpendingArr;
     }
 
-    public TableModel getCategoryTable(YearBudget yearReference){
+    public TableModel getCategoryTable(YearBudget yearReference) {
 
         HashMap<String, Double> yearCategorySpendingHash = yearReference.getYearlyCategorySpending();
-        String[][] yearCategorySpendingStrArr =    hashMapTo2DArray(yearCategorySpendingHash);//new String[yearCategorySpending.size()][2];
+        String[][] yearCategorySpendingStrArr = hashMapTo2DArray(yearCategorySpendingHash);//new String[yearCategorySpending.size()][2];
 
         TableModel dataModel = new
 
@@ -58,8 +60,11 @@ public class DisplayAllSpendingGUI extends JFrame{
                     @Override
                     public String getColumnName(int column) {
 
-                        if(column == 0){ return "Category";}
-                        else{ return "Total Spending";}
+                        if (column == 0) {
+                            return "Category";
+                        } else {
+                            return "Total Spending";
+                        }
                     }
 
                     public int getColumnCount() {
@@ -76,3 +81,5 @@ public class DisplayAllSpendingGUI extends JFrame{
                 };
 
         return dataModel;
+    }
+}
