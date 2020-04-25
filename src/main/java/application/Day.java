@@ -1,4 +1,5 @@
 package main.java.application;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -10,9 +11,9 @@ public class Day {
     }
 
     public void addItem(String category, Item itemPurchased) {
-        if(this.purchases.containsKey(category)){
+        if (this.purchases.containsKey(category)) {
             this.purchases.get(category).add(itemPurchased);
-        } else{
+        } else {
             ArrayList<Item> newItem = new ArrayList<>();
             newItem.add(itemPurchased);
             this.purchases.put(category, newItem);
@@ -20,50 +21,53 @@ public class Day {
         }
         this.costOfPurchases += itemPurchased.getPrice();
     }
+
     /**
      * Iterates through all items and adds category:price to the HashMap from Month
+     *
      * @param monthHashMap HashMap from class month. All category:spending will be added for the day
      */
-    public void getDailyCategorySpending(HashMap<String, Double> monthHashMap){
+    public void getDailyCategorySpending(HashMap<String, Double> monthHashMap) {
 
         ArrayList<String> categoryList = getCategories();
 
-        for(String category : this.getCategories()){    // iterate through each category
-            for(Item item : this.getItems(category)){   // iterate through each Item per category
+        for (String category : this.getCategories()) {    // iterate through each category
+            for (Item item : this.getItems(category)) {   // iterate through each Item per category
 
                 // if category exists, update the price. otherwise create category
-                if(monthHashMap.containsKey(category)){
+                if (monthHashMap.containsKey(category)) {
                     monthHashMap.put(category, monthHashMap.get(category) + item.getPrice());
-                }
-                else{
+                } else {
                     monthHashMap.put(category, item.getPrice());
                 }
             }
         }
     }
-    public ArrayList<Item> getItems(String category){
+
+    public ArrayList<Item> getItems(String category) {
         return purchases.get(category);
     }
 
     public ArrayList<String> getCategories() {
-        return (ArrayList<String>) categories.clone();
+        return categories;
     }
 
     public boolean purchasesIsEmpty() {
         return this.purchases.isEmpty();
     }
 
-    public boolean categoriesIsEmpty(){
+    public boolean categoriesIsEmpty() {
         return this.categories.isEmpty();
     }
 
-    public double getCostOfPurchases(){
+    public double getCostOfPurchases() {
         return this.costOfPurchases;
     }
 
-    public String toString(){
+    public String toString() {
         return purchases.toString();
     }
+
     private HashMap<String, ArrayList<Item>> purchases;
     private ArrayList<String> categories;
     private double costOfPurchases;
