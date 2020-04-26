@@ -14,8 +14,11 @@ public class YearBudget {
     public YearBudget(Year aYear) {
         currentYear = aYear;
         Months = new Month[13];
+        yearlyBudget = 0.0;
+        monthlyBudget = 0.0;
         String tempName;
         int tempCount = 0;
+
         for (int i = 1; i < 13; i++) {
             tempName = currentYear.atMonth(i).getMonth().toString();
             tempCount = currentYear.atMonth(i).lengthOfMonth();
@@ -50,6 +53,23 @@ public class YearBudget {
      * @param index - month index
      * @return the Month object in the Year
      */
+
+    public void setMonthlyBudget(Double monthlyBudget){
+        this.monthlyBudget = monthlyBudget;
+    }
+
+    public void setYearlyBudget(Double yearlyBudget){
+        this.yearlyBudget = yearlyBudget;
+    }
+
+    public Double getMonthlyBudget(){
+        return this.monthlyBudget;
+    }
+
+    public Double getYearlyBudget(){
+        return this.yearlyBudget;
+    }
+  
     public Month getMonth(int index) {
         return Months[index];
     }
@@ -111,4 +131,7 @@ public class YearBudget {
     private Month[] Months;
     private ArrayList<String> allCategories; //full category list used to search all items
     private ArrayList<String> savedCategories; //category list containing values user wants to see
+    private Double yearlyBudget;
+    private Double monthlyBudget;
+
 }
