@@ -9,10 +9,12 @@ public class Item {
      * Constructor will assign the Item a name and price Value.
      * @param aName - name of the item purchased.
      * @param aPrice - price of the item purchased.
+     * @param aCategory  - category the item belongs to.
      */
-    public Item(String category, String aName, double aPrice) {
+    public Item(String aCategory, String aName, double aPrice) {
         this.name = aName;
         this.price = aPrice;
+        this.category = aCategory;
     }
 
     /**
@@ -31,6 +33,8 @@ public class Item {
         return name;
     }
 
+    public String getCategory(){ return category; }
+
     @Override
     public String toString() {
         return name + ' ' + price;
@@ -38,4 +42,5 @@ public class Item {
 
     private final String name;
     private final double price;
+    private final String category;
 }
