@@ -2,9 +2,7 @@
 package main.java.application;
 
 import java.time.Year;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 /**
  * @author study_work
@@ -27,7 +25,6 @@ public class YearBudget {
 
     public HashMap<String, Double> getYearlyCategorySpending() {
         HashMap<String, Double> yearCategorySpending = new HashMap<String, Double>();
-
         for (int i = 1; i < 13; i++) {
             this.Months[i].getMonthlyCategorySpending(yearCategorySpending);
         }
@@ -63,6 +60,16 @@ public class YearBudget {
         return allDays;
     }
 
+    public ArrayList<String> getCategories(){
+        ArrayList<String> c = new ArrayList<>();
+        for(int i = 1; i < 13; i++){
+            c.addAll(Months[i].getCategoriesInMonth());
+        }
+        Set<String> s = new LinkedHashSet<>(c);
+        c = new ArrayList<>(s);
+        return c;
+    }
+
     public static void main(String[] args) {
     }
 
@@ -80,4 +87,5 @@ public class YearBudget {
 
     private Year currentYear;
     private Month[] Months;
+    private ArrayList<String> yearlyCategories;
 }

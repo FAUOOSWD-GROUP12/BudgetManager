@@ -45,6 +45,7 @@ public class BudgetManager {
         JFrame mainApp = new MainMenuGUI("Budget Manager", bm.getYear(), bm.getLoader());
 
 
+
     }
 
     private YearBudget aYearBudget;

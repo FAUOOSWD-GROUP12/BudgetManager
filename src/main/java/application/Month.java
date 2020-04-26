@@ -77,13 +77,24 @@ public class Month {
         for(int i = 1; i < daysInMonth; i++){
             categories.addAll(days[i].getCategories());
         }
-        return null;
+        Set<String> s = new LinkedHashSet<>(categories);
+        categories = new ArrayList<>(s);
+        return categories;
     }
 
     public List<Day> daysInThisMonth() {
         ArrayList<Day> allDays = new ArrayList<>();
         allDays.addAll(Arrays.asList(days).subList(1, days.length));
         return allDays;
+    }
+
+    public static void main(String[] args) {
+        Month test = new Month(3, "Test");
+        test.addItemToDay("Foo", new Item("bar", 10), 1);
+        test.addItemToDay("ooF", new Item("bar", 10), 2);
+        test.addItemToDay("UwU", new Item("bar", 10), 1);
+        test.addItemToDay("Foo", new Item("bar", 10), 3);
+        System.out.println(test.getCategoriesInMonth());
     }
 
     private Day[] days;
