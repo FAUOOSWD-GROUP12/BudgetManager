@@ -6,12 +6,15 @@ import main.java.utility.DayFormatter;
 
 import java.io.*;
 import java.time.Year;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class YearLoader {
     YearLoader(Year yearToManage) {
         this.yearToLoad = yearToManage;
         CSVFile = new File("src/main/resources/Test" + yearToLoad.toString() + ".csv");
+        CategoryFile = new File("src/main/resources/TestCategory" + yearToLoad.toString() + ".csv");
     }
 
     public YearBudget getYearFromFile(Year yearToLoad) {
@@ -46,8 +49,22 @@ public class YearLoader {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        } else {
+        }
+        else {
             System.out.println("YearLoader.java: " + CSVFile + " does not exist.");
+        }
+        if(CategoryFile.exists()){
+            try (BufferedReader br = new BufferedReader(new FileReader(CategoryFile))){
+                String[] cat = CSVReader.readLine(br);
+                if (cat[0].equals("")){
+                    loadedYear.setSavedCategories(new ArrayList<>());
+                } else{
+                    ArrayList<String> categoriesToLoad = new ArrayList<>(Arrays.asList(cat));
+                    loadedYear.setSavedCategories(categoriesToLoad);
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
 
         return loadedYear;
@@ -59,12 +76,21 @@ public class YearLoader {
         List<Day> daysToSave = loadedYear.getAllDays();
         try {
             CSVFile.createNewFile();
+            CategoryFile.createNewFile();
             try {
-                FileWriter writer = new FileWriter(CSVFile);
+                FileWriter yearWriter = new FileWriter(CSVFile);
                 for (Day d : daysToSave) {
-                    CSVWriter.writeLine(writer, DayFormatter.formatDayToCSV(d));
+                    CSVWriter.writeLine(yearWriter, DayFormatter.formatDayToCSV(d));
                 }
-                writer.flush();
+                if (!(loadedYear.getSavedCategories().contains("") && loadedYear.getSavedCategories().size() == 1)){
+                    FileWriter categoryWriter = new FileWriter(CategoryFile);
+                    CSVWriter.writeLine(categoryWriter, loadedYear.getSavedCategories());
+                    categoryWriter.flush();
+                    categoryWriter.close();
+                }
+                yearWriter.flush();
+                yearWriter.close();
+
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -77,5 +103,5 @@ public class YearLoader {
     private File CSVFile;
     private Year yearToLoad;
     private YearBudget loadedYear;
-    private FileWriter writer;
+    private File CategoryFile;
 }

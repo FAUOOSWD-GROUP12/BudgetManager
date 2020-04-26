@@ -36,23 +36,25 @@ public class Month {
         }
     }
 
+    /**
+     * getMonthlySpending() will get all of the days aggregated inside the month and accumulate their costs.
+     * @return the cost of all the days in this month. The cost of the month.
+     */
     public Double getMonthlySpending() {
         Double total = 0.0;
-
         for (int i = 1; i <= daysInMonth; i++) {
             if (days[i] != null) {
                 total += days[i].getCostOfPurchases();
             }
         }
-
         return total;
     }
 
     /**
      * Add item to specified day. If day is null, initialize day and then add item
      *
-     * @param item
-     * @param dayNum
+     * @param item - item object to add.
+     * @param dayNum - day of the month
      */
     public void addItemToDay(String category, Item item, int dayNum) {
 
@@ -64,21 +66,47 @@ public class Month {
         }
     }
 
+    /**
+     * getDaysInMonth() will return the number of days in the month.
+     * @return int number of days in the month.
+     */
     public int getDaysInMonth() {
         return this.daysInMonth;
     }
 
+    /**
+     * getMonthName() returns the name of the month.
+     * @return the String name of the month.
+     */
     public String getMonthName() {
         return this.monthName;
     }
 
+    /**
+     * Will go through the Days, collect their category keys, and remove duplicates to get a master key to
+     * access all the items purchased in each Day of the Month.
+     * @return master key list to access all of Month's Days.
+     */
+    public ArrayList<String> getCategoriesInMonth(){
+        ArrayList<String> categories = new ArrayList<>();
+        for(int i = 1; i < daysInMonth; i++){
+            categories.addAll(days[i].getCategories());
+        }
+        Set<String> s = new LinkedHashSet<>(categories);
+        categories = new ArrayList<>(s);
+        return categories;
+    }
+
+    /**
+     * Returns a List object referencing all the Day objects in Month.
+     * @return allDays - every day in this month.
+     */
     public List<Day> daysInThisMonth() {
-        ArrayList<Day> allDays = new ArrayList<>();
-        allDays.addAll(Arrays.asList(days).subList(1, days.length));
+        ArrayList<Day> allDays = new ArrayList<>(Arrays.asList(days).subList(1, days.length));
         return allDays;
     }
 
-    private Day[] days;
-    private int daysInMonth;
-    private String monthName;
+    private final Day[] days;
+    private final int daysInMonth;
+    private final String monthName;
 }

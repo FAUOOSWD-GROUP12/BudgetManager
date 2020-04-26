@@ -11,9 +11,7 @@ import java.util.List;
 
 public class DayFormatter {
     public static List<String> formatDayToCSV(Day d) {
-        System.out.println("Making String list");
         List<String> values = new ArrayList<>();
-        System.out.println("For Loop Starting");
         System.out.println(d.toString());
         for (String category : d.getCategories()) {
             ArrayList<Item> items = d.getItems(category);
