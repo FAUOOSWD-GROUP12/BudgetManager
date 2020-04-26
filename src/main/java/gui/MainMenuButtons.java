@@ -33,7 +33,7 @@ public class MainMenuButtons {
         manageCategoriesButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new CategoriesGUI();
+                new CategoriesGUI(workingYear);
                 System.out.println("Categories Button Pressed");
             }
         });

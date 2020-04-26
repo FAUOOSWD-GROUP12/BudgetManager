@@ -75,21 +75,19 @@
           </hspacer>
         </children>
       </grid>
-      <component id="8b7ec" class="javax.swing.JList" binding="categoryList">
-        <constraints border-constraint="Center"/>
-        <properties>
-          <inheritsPopupMenu value="false"/>
-        </properties>
-      </component>
       <hspacer id="58296">
         <constraints border-constraint="West"/>
       </hspacer>
       <hspacer id="7f113">
         <constraints border-constraint="East"/>
       </hspacer>
-      <hspacer id="dd610">
+      <vspacer id="fb9c8">
         <constraints border-constraint="North"/>
-      </hspacer>
+      </vspacer>
+      <component id="133b1" class="javax.swing.JTable" binding="categoryTable">
+        <constraints border-constraint="Center"/>
+        <properties/>
+      </component>
     </children>
   </grid>
 </form>
