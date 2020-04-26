@@ -1,55 +1,49 @@
 package main.java.application;
 
-import main.java.utility.CSVWriter;
-import main.java.utility.DayFormatter;
 import main.java.gui.*;
-
 import javax.swing.*;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.time.Year;
 
-//needs to import:
-//CSVWriter and CSVReader to read and write csv files
-//Loader to take CSV Strings and turn them into/populate Days
-//Logger to log what is being done
-//Collection of Days that need to be loaded from file.
-//
+/**
+ * BudgetManager class will hold the YearBudget that is being managed and a YearLoader. This class initializer will
+ * initialize the year specified (Default the current year) and will use a the loader to read the file
+ * and fill the YearBudget. The main method will run the gui and be passed the year loaded from the file and the loader to
+ * manipulate year data and save it when the gui terminates.
+ */
 public class BudgetManager {
-
+    /**
+     * Initializer will create a year loader to return a YearBudget for use in the application.
+     */
     public BudgetManager() {
         aYearLoader = new YearLoader(DEFAULT_YEAR);
         aYearBudget = aYearLoader.getYearFromFile(DEFAULT_YEAR);
-
     }
+
+    /**
+     * Get loader returns the loader that was created in the construction of BudgetManager()
+     * @return YearLoader Class to read and write a file with the YearBudget it contains.
+     */
 
     public YearLoader getLoader() {
         return this.aYearLoader;
     }
 
-
+    /**
+     * getYear() returns a YearBudget class that contains all data loaded from a file, specified by YearLoader.
+     * @return the YearBudget stored in BudgetManager.
+     */
     public YearBudget getYear() {
         return this.aYearBudget;
     }
 
     public static void main(String[] args) {
-
-        //Check if there is a file to read from and read from that file
-        //if not, create a new file for the current year
-        //run application-gui
-        //finished with application:
-        //overwrite old file with new data
-        //close application
         BudgetManager bm = new BudgetManager();
         JFrame mainApp = new MainMenuGUI("Budget Manager", bm.getYear(), bm.getLoader());
-
-
-
     }
 
     private YearBudget aYearBudget;
     private YearLoader aYearLoader;
     private static final Year DEFAULT_YEAR = Year.now();
-
+    /* The DEFAULT_YEAR could always be used, and another constructor could be added
+    to make a BudgetManager that works with a different year.*/
 }
