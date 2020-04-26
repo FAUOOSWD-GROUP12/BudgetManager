@@ -10,7 +10,7 @@ public class Item {
      * @param aName - name of the item purchased.
      * @param aPrice - price of the item purchased.
      */
-    public Item(String aName, double aPrice) {
+    public Item(String category, String aName, double aPrice) {
         this.name = aName;
         this.price = aPrice;
     }

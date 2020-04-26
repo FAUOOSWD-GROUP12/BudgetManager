@@ -25,7 +25,7 @@ public class DayFormatter {
         }
         return values;
     }
-
+/*
     public static Day formatCSVtoDay(String csvDay) {
         String splitByComma = ",";
         String[] aDay = csvDay.split(splitByComma);
@@ -43,7 +43,7 @@ public class DayFormatter {
         }
         return newDay;
     }
-
+*/
     public static void main(String[] args) {
         /*
         Day dayTest = new Day();

@@ -39,7 +39,7 @@ public class YearLoader {
                                 String itemName = aDay[i];
                                 i++;
                                 double itemPrice = Double.parseDouble(aDay[i]);
-                                loadedYear.getMonth(m).addItemToDay(category, new Item(itemName, itemPrice), d);
+                                loadedYear.getMonth(m).addItemToDay(category, new Item(category, itemName, itemPrice), d);
                                 //System.out.println(category + itemName + itemPrice);
                             }
 

@@ -24,9 +24,8 @@ public class CSVWriter {
         sb.append("\n");
         w.append(sb.toString());
     }
-
+    /*
     public static void main(String[] args) {
-
         Day dayTest = new Day();
         dayTest.addItem("Groceries", new Item("Bread", 5));
         dayTest.addItem("Education", new Item("Book", 100));
@@ -53,12 +52,16 @@ public class CSVWriter {
             CSVWriter.writeLine(writer, DayFormatter.formatDayToCSV(dayTest));
             CSVWriter.writeLine(writer,DayFormatter.formatDayToCSV(dayTest1));
             CSVWriter.writeLine(writer,DayFormatter.formatDayToCSV(dayEmptyTest));
-            */
+
             writer.flush();
             writer.close();
+
         } catch (IOException e) {
             e.printStackTrace();
         }
 
+
     }
+    */
+
 }

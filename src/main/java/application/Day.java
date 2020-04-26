@@ -105,6 +105,22 @@ public class Day {
         return purchases.toString();
     }
 
+    public Object[] getItems(){
+        ArrayList<ArrayList<String>> itemsInADay = new ArrayList<>();
+        int index = 0;
+        for(String c : categories){
+            ArrayList<Item> itemsInCategory = purchases.get(c);
+            for(Item i : itemsInCategory){
+                ArrayList<String> stringItemsInCategory = new ArrayList<>();
+                stringItemsInCategory.add(c);
+                stringItemsInCategory.add(i.getName());
+                stringItemsInCategory.add(Double.toString(i.getPrice()));
+                itemsInADay.add(stringItemsInCategory);
+            }
+        }
+        return itemsInADay.toArray();
+    }
+
     private HashMap<String, ArrayList<Item>> purchases;
     private ArrayList<String> categories;
     private double costOfPurchases;

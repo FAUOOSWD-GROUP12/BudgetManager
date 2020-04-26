@@ -47,7 +47,7 @@ public class AddPurchaseGUI {
                         + " Month Selected:" + monthSelected
                         + " Day Selected:" + daySelected);
                 System.out.println(months[monthSelected].toString());
-                months[monthSelected].addItemToDay(categorySelected, new Item(itemName, itemPrice), daySelected);
+                months[monthSelected].addItemToDay(categorySelected, new Item(categorySelected, itemName, itemPrice), daySelected);
             }
         });
 
