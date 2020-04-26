@@ -27,7 +27,7 @@ public class MainMenuButtons {
             @Override
             public void actionPerformed(ActionEvent e) {
                 System.out.println("Add Item Button Pressed");
-                new AddPurchaseGUI(workingYear.getMonths(), new String[]{"a", "b", "c"});
+                new AddPurchaseGUI(workingYear.getMonths(), workingYear.getSavedCategories());
             }
         });
         manageCategoriesButton.addActionListener(new ActionListener() {

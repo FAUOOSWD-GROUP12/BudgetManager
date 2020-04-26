@@ -12,14 +12,14 @@ import java.util.ArrayList;
 
 public class AddPurchaseGUI {
 
-    public AddPurchaseGUI(Month[] months, String[] categories) {
+    public AddPurchaseGUI(Month[] months, ArrayList<String> categories) {
 
         JFrame frame = new JFrame("Add Purchase");
 
         ComboBoxModel monthModel = new DefaultComboBoxModel(monthComboArray);
         monthComboBox.setModel(monthModel);
 
-        ComboBoxModel categoryModel = new DefaultComboBoxModel(categories);
+        ComboBoxModel categoryModel = new DefaultComboBoxModel(categories.toArray());
         categoryComboBox.setModel(categoryModel);
 
         frame.setContentPane(addPurchasesGUI);

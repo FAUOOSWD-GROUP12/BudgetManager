@@ -25,7 +25,9 @@ public class MainMenuGUI extends JFrame {
         });
 
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setContentPane(new MainMenuButtons(year).getButtons());
+        this.setLayout(new FlowLayout(FlowLayout.LEADING));
+        this.add(new MainMenuButtons(year).getButtons());
+        //this.setContentPane(new MainMenuButtons(year).getButtons());
         this.pack();
         this.setVisible(true);
     }
