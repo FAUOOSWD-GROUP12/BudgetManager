@@ -24,6 +24,7 @@ public class YearBudget {
         savedCategories = new ArrayList<>();
     }
 
+
     public HashMap<String, Double> getYearlyCategorySpending() {
         HashMap<String, Double> yearCategorySpending = new HashMap<String, Double>();
         for (int i = 1; i < 13; i++) {
@@ -32,15 +33,23 @@ public class YearBudget {
         return yearCategorySpending;
     }
 
+    /**
+     * getYearlySpending will get the cost of the whole year. It iterates through the months accumulating their costs.
+     * @return the total cost of the year.
+     */
     public Double getYearlySpending() {
         Double total = 0.0;
         for (int i = 1; i < 13; i++) {
             total += this.Months[i].getMonthlySpending();
         }
-
         return total;
     }
 
+    /**
+     * getMonth() returns the month specified by the indexes [1-12]. Index 0 will return null;
+     * @param index - month index
+     * @return the Month object in the Year
+     */
     public Month getMonth(int index) {
         return Months[index];
     }
