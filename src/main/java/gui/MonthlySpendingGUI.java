@@ -5,11 +5,13 @@ import javax.swing.table.TableModel;
 import main.java.application.Item;
 import main.java.application.Month;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import javax.swing.*;
 
 public class MonthlySpendingGUI extends JFrame{
 
-    public MonthlySpendingGUI(Month thisMonth){
+    public MonthlySpendingGUI(Month thisMonth, Double budget){
         super(thisMonth.getMonthName() + " Spending Summary");
         monthNameLabel.setText(thisMonth.getMonthName() + " Spending Summary: ");
         ArrayList<Item> monthlyItems = thisMonth.getAllItems();
@@ -17,8 +19,8 @@ public class MonthlySpendingGUI extends JFrame{
 
         // creates table for all Items purchased this month
         itemSpendingTable.setModel(getItemTable(monthlyItems));
-
-
+        categorySpendingTable.setModel(getCategoryTable(thisMonth));
+        budgetTable.setModel(getBudgetTable(thisMonth,budget));
 
 
 
@@ -65,13 +67,129 @@ public class MonthlySpendingGUI extends JFrame{
         return dataModel;
     }
 
+    /**
+     * Gets hashMap from thisMonth, converts it to a 2D array, and uses 2D array to create table
+     * @param thisMonth the current month items will be used from
+     * @return Table containing categories and totals for each category
+     */
+    public TableModel getCategoryTable(Month thisMonth){
+
+        HashMap<String, Double> monthlyCategorySpending = new HashMap<>();
+        thisMonth.getMonthlyCategorySpending(monthlyCategorySpending);
+        String[][] categorySpendingStrArr = hashMapTo2DArray(monthlyCategorySpending);
+
+
+        TableModel dataModel = new
+
+                AbstractTableModel() {
+                    @Override
+                    public String getColumnName(int column) {
+
+                        if (column == 0) {
+                            return "Category";
+                        } else {
+                            return "Total Spending";
+                        }
+                    }
+
+                    public int getColumnCount() {
+                        return 2;
+                    }
+
+                    public int getRowCount() {
+                        return categorySpendingStrArr.length;
+                    }
+
+                    public Object getValueAt(int row, int col) {
+                        return categorySpendingStrArr[row][col];
+                    }
+        };
+        return dataModel;
+    }
+
+    /**
+     * Creates a table comparing budget and total spendings
+     * @param thisMonth
+     * @return
+     */
+    public TableModel getBudgetTable(Month thisMonth, Double budget){
+
+        Double totalSpending = thisMonth.getMonthlySpending();
+        String[][] budgetArr = new String[1][4];
+        budgetArr[0][0] = totalSpending.toString();
+        budgetArr[0][1] = budget.toString();
+        if(budget == 0.0){
+            budgetArr[0][2] = "Budget Not Set";
+            budgetArr[0][3] = "N/A";
+        }
+        else if(totalSpending > budget){
+            budgetArr[0][2] = "- " +  (budget - totalSpending);
+            budgetArr[0][3] = "No";
+        }
+        else if(totalSpending <= budget){
+            budgetArr[0][2] = "+ " + (totalSpending - budget);
+            budgetArr[0][3] = "Yes";
+            }
+
+
+        TableModel dataModel = new
+                AbstractTableModel() {
+            @Override
+            public int getRowCount() {
+                return 1;
+            }
+
+            @Override
+            public int getColumnCount() {
+                return 4;
+            }
+            @Override
+            public String getColumnName(int column) {
+
+                if (column == 0) {
+                    return "Total Spent";
+                }
+                if (column == 1) {
+                    return "Budget";
+                }
+                if (column == 2) {
+                    return "Difference";
+                }
+                return "Budget Met?";
+
+            }
+
+            @Override
+            public Object getValueAt(int rowIndex, int columnIndex) {
+                return budgetArr[0][columnIndex];
+            }
+        };
+
+        return dataModel;
+    }
+
+    public String[][] hashMapTo2DArray(HashMap<String, Double> categorySpendingHashMap) {
+        String[][] categorySpendingArr = new String[categorySpendingHashMap.size()][2];
+        int row = 0;
+
+        for (Map.Entry<String, Double> categorySpendingEntry : categorySpendingHashMap.entrySet()) {
+            categorySpendingArr[row][0] = categorySpendingEntry.getKey();
+            categorySpendingArr[row][1] = categorySpendingEntry.getValue().toString();
+            row++;
+        }
+        return categorySpendingArr;
+    }
+
 
     private JPanel mainPanel;
-    private JPanel topPanel;
+    private JPanel middlePanel;
     private JLabel monthNameLabel;
     private JPanel bottomPanel;
     private JScrollPane categorySpendingScrollPane;
     private JTable categorySpendingTable;
     private JTable itemSpendingTable;
     private JScrollPane itemSpendingScrollPane;
+    private JTable budgetTable;
+    private JPanel topPanel;
+    private JScrollPane budgetScrollPane;
 }
