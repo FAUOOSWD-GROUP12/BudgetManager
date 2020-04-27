@@ -122,12 +122,12 @@ public class MonthlySpendingGUI extends JFrame{
             budgetArr[0][2] = "Budget Not Set";
             budgetArr[0][3] = "N/A";
         }
-        else if(totalSpending > budget){
-            budgetArr[0][2] = "- " +  (budget - totalSpending);
+        else if(totalSpending > budget){    // if budget is not met
+            budgetArr[0][2] = "" +  (budget - totalSpending);
             budgetArr[0][3] = "No";
         }
         else if(totalSpending <= budget){
-            budgetArr[0][2] = "+ " + (totalSpending - budget);
+            budgetArr[0][2] = "+ " + (budget - totalSpending);
             budgetArr[0][3] = "Yes";
             }
 

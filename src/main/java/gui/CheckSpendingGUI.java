@@ -29,7 +29,7 @@ public class CheckSpendingGUI extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 int monthIndex = monthSelectionComboBox.getSelectedIndex() + 1;
                 // display info for month
-                new MonthlySpendingGUI(yearReference.getMonth(monthIndex));
+                new MonthlySpendingGUI(yearReference.getMonth(monthIndex), yearReference.getMonthlyBudget());
             }
         });
 
