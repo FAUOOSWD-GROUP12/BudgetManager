@@ -15,21 +15,4 @@ public class CSVReader {
         return aDay;
     }
 
-    public static void main(String[] args) {
-        /*
-        String csvFile = "src/main/resources/Test.csv";
-        String row = "";
-        int i = 0;
-        try(BufferedReader br = new BufferedReader(new FileReader(csvFile))){
-            while((row = CSVReader.readLine(br)) != null){
-                System.out.println(i);
-                System.out.println(row);
-                i++;
-            }
-        } catch (IOException e){
-            e.printStackTrace();
-        }
-
-         */
-    }
 }

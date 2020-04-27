@@ -106,6 +106,18 @@ public class Month {
         return allDays;
     }
 
+    public ArrayList<Item> getItemsFromDay(int dayIndex){
+        ArrayList<Item> items = new ArrayList<>();
+        if(!days[dayIndex].categoriesIsEmpty()){
+            for (String c: days[dayIndex].getCategories()){
+                {
+                    ArrayList<Item> temp = days[dayIndex].getItems(c);
+                    items.addAll(temp);
+                }
+            }
+        }
+        return items;
+    }
     private final Day[] days;
     private final int daysInMonth;
     private final String monthName;

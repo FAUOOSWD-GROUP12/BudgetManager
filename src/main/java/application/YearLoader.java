@@ -27,7 +27,7 @@ public class YearLoader {
                 //for each month in year
                 for (int m = 1; m < 13; m++) {
                     //for each day in month
-                    for (int d = 1; d < loadedYear.getMonth(m).getDaysInMonth(); d++) {
+                    for (int d = 1; d <= loadedYear.getMonth(m).getDaysInMonth(); d++) {
                         //read a day (single row/line) from the file in a String array format
                         String[] aDay = CSVReader.readLine(br);
                         //if the string array has a category, item name, price
@@ -71,8 +71,6 @@ public class YearLoader {
     }
 
     public void saveYearToFile() {
-
-        System.out.println("Saving Year: " + yearToLoad.toString() + "to" + CSVFile.toString());
         List<Day> daysToSave = loadedYear.getAllDays();
         try {
             CSVFile.createNewFile();
