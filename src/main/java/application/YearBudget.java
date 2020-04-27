@@ -112,8 +112,6 @@ public class YearBudget {
     public void removeSavedCategory(String categoryToRemove){
         savedCategories.remove(categoryToRemove);
     }
-    public static void main(String[] args) {
-    }
 
     /**
      * Prints months with corresponding number of days

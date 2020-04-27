@@ -11,20 +11,21 @@ import java.util.Map;
 
 public class DisplayAllSpendingGUI extends JFrame {
 
-    private JTable table;
-    private JScrollPane scrollPane;
+    private JTable categorySpendingTable;
+    private JScrollPane categorySpendingScrollPane;
     private JPanel panel;
     private JLabel titleLabel;
     private JTextPane totalSpendingPane;
+    private JTable budgetTable;
+    private JScrollPane budgetScrollPane;
 
     public DisplayAllSpendingGUI(YearBudget yearReference) {
         super("All Spending Summary");
-        System.out.println("INSIDE DisplayAllSpendingGUI");
 
-        // display total spending
-        totalSpendingPane.setText("Total Spending: " + yearReference.getYearlySpending().toString());
-        // create and display table
-        table.setModel(getCategoryTable(yearReference));
+        // create and display budget table
+        budgetTable.setModel(getBudgetTable(yearReference));
+        // create and display category spending table
+        categorySpendingTable.setModel(getCategoryTable(yearReference));
 
         setContentPane(panel);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -51,6 +52,11 @@ public class DisplayAllSpendingGUI extends JFrame {
         return categorySpendingArr;
     }
 
+    /**
+     * Gets hashMap from yearReference, converts it to a 2D array, and uses 2D array to create table
+     * @param yearReference
+     * @return table with All categories and corresponding spending
+     */
     public TableModel getCategoryTable(YearBudget yearReference) {
 
         HashMap<String, Double> yearCategorySpendingHash = yearReference.getYearlyCategorySpending();
@@ -80,6 +86,63 @@ public class DisplayAllSpendingGUI extends JFrame {
 
                     public Object getValueAt(int row, int col) {
                         return yearCategorySpendingStrArr[row][col];
+                    }
+                };
+
+        return dataModel;
+    }
+
+    public TableModel getBudgetTable(YearBudget yearReference){
+
+        Double totalSpending = yearReference.getYearlySpending();
+        Double budget = yearReference.getYearlyBudget();
+        String[][] budgetArr = new String[1][4];
+
+        budgetArr[0][0] = totalSpending.toString();
+        budgetArr[0][1] = budget.toString();
+        if(budget == 0.0){
+            budgetArr[0][2] = "Budget Not Set";
+            budgetArr[0][3] = "N/A";
+        }
+        else if(totalSpending > budget){    // if budget is not met
+            budgetArr[0][2] =  "" + (budget - totalSpending);
+            budgetArr[0][3] = "No";
+        }
+        else if(totalSpending <= budget){ // if budget is met
+            budgetArr[0][2] = "+ " + (budget - totalSpending);
+            budgetArr[0][3] = "Yes";
+        }
+
+        TableModel dataModel = new
+                AbstractTableModel() {
+                    @Override
+                    public int getRowCount() {
+                        return 1;
+                    }
+
+                    @Override
+                    public int getColumnCount() {
+                        return 4;
+                    }
+                    @Override
+                    public String getColumnName(int column) {
+
+                        if (column == 0) {
+                            return "Total Spent";
+                        }
+                        if (column == 1) {
+                            return "Budget";
+                        }
+                        if (column == 2) {
+                            return "Difference";
+                        }
+                        return "Budget Met?";
+
+                    }
+
+                    @Override
+                    public Object getValueAt(int rowIndex, int columnIndex) {
+                        return budgetArr[0][columnIndex];
                     }
                 };
 

@@ -56,7 +56,20 @@ public class Day {
             }
         }
     }
+    /**
+     * Returns all items purchased in day
+     * @return
+     */
+    public ArrayList<Item> getDayItems(){
+        ArrayList<Item> dayItems = new ArrayList<>();
 
+        for(String category : getCategories()){
+            dayItems.addAll(getItems(category));
+        }
+
+        return dayItems;
+
+    }
     /**
      * getItems(String category) will get all the items that are mapped to the key category.
      * @param category - Accessor key to the map holding a group of items.
