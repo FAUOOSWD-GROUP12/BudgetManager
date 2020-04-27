@@ -38,12 +38,14 @@ public class MainMenuButtons {
             @Override
             public void actionPerformed(ActionEvent e) {
                 System.out.println("Budget Button Pressed");
+                new BudgetGUI(workingYear);
             }
         });
         checkSpendingButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 System.out.println("Check Spending Button Pressed");
+                new CheckSpendingGUI(workingYear);
             }
         });
 
