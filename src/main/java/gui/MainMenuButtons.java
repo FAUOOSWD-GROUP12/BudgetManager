@@ -40,12 +40,14 @@ public class MainMenuButtons {
         manageBudgetButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                new BudgetGUI(workingYear);
                 System.out.println("Budget Button Pressed");
             }
         });
         checkSpendingButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                new CheckSpendingGUI(workingYear);
                 System.out.println("Check Spending Button Pressed");
             }
         });

@@ -106,6 +106,19 @@ public class Month {
         return allDays;
     }
 
+    /**
+     * Loops though each day and returns a list of all items purchased this month
+     * @return list containg items from every day in the month
+     */
+    public ArrayList<Item> getAllItems(){
+        ArrayList<Item> monthlyItems = new ArrayList<>();
+
+        for(int i = 1;i<daysInMonth;i++){
+            monthlyItems.addAll(days[i].getDayItems());
+        }
+
+        return monthlyItems;
+    }
     private final Day[] days;
     private final int daysInMonth;
     private final String monthName;

@@ -105,6 +105,20 @@ public class Day {
         return purchases.toString();
     }
 
+    /**
+     * Returns all items purchased in day
+     * @return
+     */
+    public ArrayList<Item> getDayItems(){
+        ArrayList<Item> dayItems = new ArrayList<>();
+
+        for(String category : getCategories()){
+            dayItems.addAll(getItems(category));
+        }
+
+        return dayItems;
+
+    }
 
     private HashMap<String, ArrayList<Item>> purchases;
     private ArrayList<String> categories;
