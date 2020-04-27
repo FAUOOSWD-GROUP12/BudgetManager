@@ -1,10 +1,6 @@
 //package main.java.application;
 package main.java.application;
 
-import main.java.application.Day;
-import main.java.application.Item;
-
-import java.lang.reflect.Array;
 import java.util.*;
 
 public class Month {
@@ -38,6 +34,7 @@ public class Month {
 
     /**
      * getMonthlySpending() will get all of the days aggregated inside the month and accumulate their costs.
+     *
      * @return the cost of all the days in this month. The cost of the month.
      */
     public Double getMonthlySpending() {
@@ -53,7 +50,7 @@ public class Month {
     /**
      * Add item to specified day. If day is null, initialize day and then add item
      *
-     * @param item - item object to add.
+     * @param item   - item object to add.
      * @param dayNum - day of the month
      */
     public void addItemToDay(String category, Item item, int dayNum) {
@@ -68,6 +65,7 @@ public class Month {
 
     /**
      * getDaysInMonth() will return the number of days in the month.
+     *
      * @return int number of days in the month.
      */
     public int getDaysInMonth() {
@@ -76,6 +74,7 @@ public class Month {
 
     /**
      * getMonthName() returns the name of the month.
+     *
      * @return the String name of the month.
      */
     public String getMonthName() {
@@ -85,11 +84,12 @@ public class Month {
     /**
      * Will go through the Days, collect their category keys, and remove duplicates to get a master key to
      * access all the items purchased in each Day of the Month.
+     *
      * @return master key list to access all of Month's Days.
      */
-    public ArrayList<String> getCategoriesInMonth(){
+    public ArrayList<String> getCategoriesInMonth() {
         ArrayList<String> categories = new ArrayList<>();
-        for(int i = 1; i < daysInMonth; i++){
+        for (int i = 1; i < daysInMonth; i++) {
             categories.addAll(days[i].getCategories());
         }
         Set<String> s = new LinkedHashSet<>(categories);
@@ -99,6 +99,7 @@ public class Month {
 
     /**
      * Returns a List object referencing all the Day objects in Month.
+     *
      * @return allDays - every day in this month.
      */
     public List<Day> daysInThisMonth() {
@@ -106,10 +107,10 @@ public class Month {
         return allDays;
     }
 
-    public ArrayList<Item> getItemsFromDay(int dayIndex){
+    public ArrayList<Item> getItemsFromDay(int dayIndex) {
         ArrayList<Item> items = new ArrayList<>();
-        if(!days[dayIndex].categoriesIsEmpty()){
-            for (String c: days[dayIndex].getCategories()){
+        if (!days[dayIndex].categoriesIsEmpty()) {
+            for (String c : days[dayIndex].getCategories()) {
                 {
                     ArrayList<Item> temp = days[dayIndex].getItems(c);
                     items.addAll(temp);
@@ -119,22 +120,23 @@ public class Month {
         return items;
     }
 
-    public void removeItemInDay(String key, int dayIndex, Item itemToRemove){
-        days[dayIndex].removePurchase(key,itemToRemove);
+    public void removeItemInDay(String key, int dayIndex, Item itemToRemove) {
+        days[dayIndex].removePurchase(key, itemToRemove);
     }
 
-    public double getDaySpending(int d){
-       return days[d].getCostOfPurchases();
+    public double getDaySpending(int d) {
+        return days[d].getCostOfPurchases();
     }
 
     /**
      * Loops though each day and returns a list of all items purchased this month
+     *
      * @return list containing items from every day in the month
      */
-    public ArrayList<Item> getAllItems(){
+    public ArrayList<Item> getAllItems() {
         ArrayList<Item> monthlyItems = new ArrayList<>();
 
-        for(int i = 1;i<daysInMonth;i++){
+        for (int i = 1; i < daysInMonth; i++) {
             monthlyItems.addAll(days[i].getDayItems());
         }
 

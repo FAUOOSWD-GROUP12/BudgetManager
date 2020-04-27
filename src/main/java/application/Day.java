@@ -20,7 +20,8 @@ public class Day {
     /**
      * addItem(String category, Item itemPurchased) will store keys of categories, and map them to groups of items.
      * A category will be an identifier for the type of item within. EX: Groceries -> (Apples/$5.00), (Cake/$8.00)...
-     * @param category the String identifier to access the item.
+     *
+     * @param category      the String identifier to access the item.
      * @param itemPurchased The item to be stored and can be accessed by the category.
      */
     public void addItem(String category, Item itemPurchased) {
@@ -56,22 +57,26 @@ public class Day {
             }
         }
     }
+
     /**
      * Returns all items purchased in day
+     *
      * @return
      */
-    public ArrayList<Item> getDayItems(){
+    public ArrayList<Item> getDayItems() {
         ArrayList<Item> dayItems = new ArrayList<>();
 
-        for(String category : getCategories()){
+        for (String category : getCategories()) {
             dayItems.addAll(getItems(category));
         }
 
         return dayItems;
 
     }
+
     /**
      * getItems(String category) will get all the items that are mapped to the key category.
+     *
      * @param category - Accessor key to the map holding a group of items.
      * @return an ArrayList<Item> containing the group of items identified by the category.
      * Will return null if the mapping does not contain the category key.
@@ -83,6 +88,7 @@ public class Day {
     /**
      * getCategories() will return an ArrayList of String values that are keys to access
      * the items in the purchases HashMap.
+     *
      * @return the key list for the HashMap purchases.
      */
     public ArrayList<String> getCategories() {
@@ -91,6 +97,7 @@ public class Day {
 
     /**
      * Will check if the object contains no purchases.
+     *
      * @return true if there are no mappings.
      */
     public boolean purchasesIsEmpty() {
@@ -99,6 +106,7 @@ public class Day {
 
     /**
      * Will check if the object contains any keys.
+     *
      * @return true if there are no keys.
      */
     public boolean categoriesIsEmpty() {
@@ -107,6 +115,7 @@ public class Day {
 
     /**
      * Will return the accumulated cost of the day.
+     *
      * @return the total dollar value of this day.
      */
     public double getCostOfPurchases() {
@@ -118,15 +127,15 @@ public class Day {
         return purchases.toString();
     }
 
-    public void removePurchase(String key, Item itemToRemove){
-        if(purchases.containsKey(key)){
+    public void removePurchase(String key, Item itemToRemove) {
+        if (purchases.containsKey(key)) {
             purchases.get(key).remove(itemToRemove);
             costOfPurchases = costOfPurchases - itemToRemove.getPrice();
         }
     }
 
-    private HashMap<String, ArrayList<Item>> purchases;
-    private ArrayList<String> categories;
+    private final HashMap<String, ArrayList<Item>> purchases;
+    private final ArrayList<String> categories;
     private double costOfPurchases;
 
 }

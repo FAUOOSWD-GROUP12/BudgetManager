@@ -1,6 +1,7 @@
 package main.java.application;
 
-import main.java.gui.*;
+import main.java.gui.MainMenuGUI;
+
 import javax.swing.*;
 import java.time.Year;
 
@@ -21,6 +22,7 @@ public class BudgetManager {
 
     /**
      * Get loader returns the loader that was created in the construction of BudgetManager()
+     *
      * @return YearLoader Class to read and write a file with the YearBudget it contains.
      */
 
@@ -30,6 +32,7 @@ public class BudgetManager {
 
     /**
      * getYear() returns a YearBudget class that contains all data loaded from a file, specified by YearLoader.
+     *
      * @return the YearBudget stored in BudgetManager.
      */
     public YearBudget getYear() {
@@ -41,8 +44,8 @@ public class BudgetManager {
         JFrame mainApp = new MainMenuGUI("Budget Manager", bm.getYear(), bm.getLoader());
     }
 
-    private YearBudget aYearBudget;
-    private YearLoader aYearLoader;
+    private final YearBudget aYearBudget;
+    private final YearLoader aYearLoader;
     private static final Year DEFAULT_YEAR = Year.now();
     /* The DEFAULT_YEAR could always be used, and another constructor could be added
     to make a BudgetManager that works with a different year.*/
