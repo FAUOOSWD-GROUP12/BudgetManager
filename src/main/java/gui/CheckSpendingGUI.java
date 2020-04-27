@@ -12,7 +12,7 @@ public class CheckSpendingGUI extends JFrame {
     private JPanel CheckSpendingPanel;
     private JButton allButton;
     private JButton viewMonthButton;
-    private JComboBox comboBox1;
+    private JComboBox monthSelectionComboBox;
 
     public CheckSpendingGUI(YearBudget yearReference) {
 
@@ -23,6 +23,16 @@ public class CheckSpendingGUI extends JFrame {
                 new DisplayAllSpendingGUI(yearReference);
             }
         });
+
+        viewMonthButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int monthIndex = monthSelectionComboBox.getSelectedIndex() + 1;
+                // display info for month
+                new MonthlySpendingGUI(yearReference.getMonth(monthIndex));
+            }
+        });
+
         setContentPane(CheckSpendingPanel);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         pack();
@@ -30,4 +40,5 @@ public class CheckSpendingGUI extends JFrame {
         setVisible(true);
 
     }
+
 }
