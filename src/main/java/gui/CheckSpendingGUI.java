@@ -7,7 +7,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class CheckSpendingGUI extends JFrame {
+public class CheckSpendingGUI {
 
     private JPanel CheckSpendingPanel;
     private JButton allButton;
@@ -33,12 +33,17 @@ public class CheckSpendingGUI extends JFrame {
             }
         });
 
-        setContentPane(CheckSpendingPanel);
-        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        pack();
-        setLocationRelativeTo(null);
-        setVisible(true);
+        //setContentPane(CheckSpendingPanel);
+        //setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        //pack();
+        //setLocationRelativeTo(null);
+        //setVisible(true);
 
+
+    }
+
+    public JPanel getCheckSpendingPanel(){
+        return CheckSpendingPanel;
     }
 
 }

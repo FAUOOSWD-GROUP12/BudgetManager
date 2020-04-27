@@ -7,7 +7,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class BudgetGUI extends JFrame {
+public class BudgetGUI {
 
     private JTextPane currentBudgetTextPane;
     private JTextField monthlyBudgetTextField;
@@ -21,7 +21,7 @@ public class BudgetGUI extends JFrame {
     private JButton setMonthlyBudgetButton;
 
     public BudgetGUI(YearBudget yearReference) {
-        super("All Spending Summary");
+        //super("Manage your Budget");
         setCurrentBudgetTextPane(yearReference.getMonthlyBudget(), yearReference.getYearlyBudget());
 
         setMonthlyBudgetButton.addActionListener(new ActionListener() {
@@ -90,11 +90,11 @@ public class BudgetGUI extends JFrame {
             }
         });
 
-        setContentPane(mainPanel);
-        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        pack();
-        setLocationRelativeTo(null);
-        setVisible(true);
+        //setContentPane(mainPanel);
+        //setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        //pack();
+        //setLocationRelativeTo(null);
+        //setVisible(true);
 
     }
 
@@ -155,5 +155,9 @@ public class BudgetGUI extends JFrame {
         }
 
         currentBudgetTextPane.setText(budgetMessage);
+    }
+
+    public JPanel getMainPanel(){
+        return mainPanel;
     }
 }
