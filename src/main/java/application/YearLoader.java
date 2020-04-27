@@ -13,9 +13,9 @@ import java.util.List;
 public class YearLoader {
     YearLoader(Year yearToManage) {
         this.yearToLoad = yearToManage;
-        CSVFile = new File("src/main/resources/Test" + yearToLoad.toString() + ".csv");
-        CategoryFile = new File("src/main/resources/TestCategory" + yearToLoad.toString() + ".csv");
-        BudgetFile = new File("src/main/resources/TestBudget" + yearToLoad.toString() + ".csv");
+        CSVFile = new File("src/main/resources/Year" + yearToLoad.toString() + ".csv");
+        CategoryFile = new File("src/main/resources/Categories"+ yearToLoad.toString() + ".csv");
+        BudgetFile = new File("src/main/resources/Budget" + yearToLoad.toString() + ".csv");
     }
 
     public YearBudget getYearFromFile(Year yearToLoad) {
