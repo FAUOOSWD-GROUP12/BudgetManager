@@ -105,6 +105,11 @@ public class Day {
         return purchases.toString();
     }
 
+    public void removePurchase(String key, Item itemToRemove){
+        if(purchases.containsKey(key)){
+            purchases.get(key).remove(itemToRemove);
+        }
+    }
 
     private HashMap<String, ArrayList<Item>> purchases;
     private ArrayList<String> categories;

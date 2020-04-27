@@ -28,6 +28,7 @@ public class ManagePurchaseGUI {
         categoryComboBox.setModel(categoryModel);
 
 
+
         frame.setContentPane(addPurchasesGUI);
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         monthComboBox.setSelectedIndex(0);
@@ -86,6 +87,12 @@ public class ManagePurchaseGUI {
         removeItemButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                int monthIndex = monthComboBox.getSelectedIndex() + 1;
+                int dayIndex = dayComboBox.getSelectedIndex() + 1;
+                Item itemSelected = (Item) itemsInDayTable.getValueAt(itemsInDayTable.getSelectedRow(), 0);
+                String key = itemSelected.getCategory();
+                months[monthIndex].removeItemInDay(key, dayIndex, itemSelected);
+                itemsInDayTable.setModel(getItemTable(months[monthIndex], dayIndex));
             }
         });
 
