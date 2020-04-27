@@ -3,6 +3,7 @@ package main.java.gui;
 import main.java.application.YearBudget;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -12,54 +13,54 @@ public class MainMenuButtons {
     private JButton manageCategoriesButton;
     private JButton manageBudgetButton;
     private JButton checkSpendingButton;
-    private JButton profileSettingsButton;
     private JPanel mainMenuButtons;
+    private JPanel editorField;
+
 
     public MainMenuButtons(YearBudget workingYear) {
         /**
          * Action listener to open the add Item menu.
          */
+        CardLayout card = new CardLayout();
+        editorField.setLayout(card);
+        editorField.add(new ManagePurchaseGUI(workingYear.getMonths(), workingYear.getSavedCategories()).getPurchasesGUI(), "EditPurchases");
+        card.show(editorField, "EditPurchases");
 
         addItemButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println("Add Item Button Pressed");
-                new ManagePurchaseGUI(workingYear.getMonths(), workingYear.getSavedCategories());
+                editorField.add(new ManagePurchaseGUI(workingYear.getMonths(), workingYear.getSavedCategories()).getPurchasesGUI(), "EditPurchases");
+                card.show(editorField, "EditPurchases");
+                //new ManagePurchaseGUI(workingYear.getMonths(), workingYear.getSavedCategories());
+
             }
         });
         manageCategoriesButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new CategoriesGUI(workingYear);
-                System.out.println("Categories Button Pressed");
+                editorField.add(new CategoriesGUI(workingYear).getCategoryManagerGUI(), "EditCategories");
+                card.show(editorField, "EditCategories");
+
+                //new CategoriesGUI(workingYear);
             }
         });
         manageBudgetButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println("Budget Button Pressed");
-                new BudgetGUI(workingYear);
+                editorField.add(new BudgetGUI(workingYear).getMainPanel(), "EditBudget");
+                card.show(editorField, "EditBudget");
             }
         });
         checkSpendingButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println("Check Spending Button Pressed");
-                new CheckSpendingGUI(workingYear);
+                editorField.add(new CheckSpendingGUI(workingYear).getCheckSpendingPanel(), "CheckSpending");
+                card.show(editorField, "CheckSpending");
             }
         });
-
-        profileSettingsButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                System.out.println("Profile Button Pressed");
-            }
-        });
-
     }
 
     public JPanel getButtons() {
         return mainMenuButtons;
     }
-
 }

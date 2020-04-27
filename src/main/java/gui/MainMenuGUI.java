@@ -13,7 +13,6 @@ public class MainMenuGUI extends JFrame {
 
     public MainMenuGUI(String title, YearBudget year, YearLoader aYearLoader) {
         super(title);
-
         yl = aYearLoader;
         addWindowListener(new WindowAdapter() {
             @Override
@@ -23,14 +22,14 @@ public class MainMenuGUI extends JFrame {
                 System.out.println("Closing");
             }
         });
-
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setContentPane(new MainMenuButtons(year).getButtons());
+        this.add(new MainMenuButtons(year).getButtons());
         this.pack();
         this.setVisible(true);
     }
 
     private JPanel mainMenu;
+    private JPanel buttonPanel;
     private YearLoader yl;
     private YearBudget year;
 
