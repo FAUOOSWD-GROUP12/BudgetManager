@@ -1,11 +1,8 @@
 package main.java.gui;
 
-import main.java.application.Month;
 import main.java.application.YearBudget;
-import main.java.application.YearLoader;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -27,7 +24,7 @@ public class MainMenuButtons {
             @Override
             public void actionPerformed(ActionEvent e) {
                 System.out.println("Add Item Button Pressed");
-                new AddPurchaseGUI(workingYear.getMonths(), workingYear.getSavedCategories());
+                new ManagePurchaseGUI(workingYear.getMonths(), workingYear.getSavedCategories());
             }
         });
         manageCategoriesButton.addActionListener(new ActionListener() {
