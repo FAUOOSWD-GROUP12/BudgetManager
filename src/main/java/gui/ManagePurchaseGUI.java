@@ -27,8 +27,6 @@ public class ManagePurchaseGUI {
         ComboBoxModel categoryModel = new DefaultComboBoxModel(categories.toArray());
         categoryComboBox.setModel(categoryModel);
 
-
-
         frame.setContentPane(addPurchasesGUI);
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         monthComboBox.setSelectedIndex(0);
@@ -56,7 +54,7 @@ public class ManagePurchaseGUI {
                         + " Day Selected:" + daySelected);
                 System.out.println(months[monthSelected].toString());
                 months[monthSelected].addItemToDay(categorySelected, new Item(categorySelected, itemName, itemPrice), daySelected);
-                itemsInDayTable.setModel(getItemTable(months[monthSelected],daySelected));
+                updateTable(months[monthSelected],daySelected);
             }
         });
 
@@ -78,7 +76,7 @@ public class ManagePurchaseGUI {
                 ComboBoxModel dayModel = new DefaultComboBoxModel(eachDay.toArray());
                 dayComboBox.setModel(dayModel);
                 dayComboBox.setSelectedIndex(0);
-                itemsInDayTable.setModel(getItemTable(months[index],dayComboBox.getSelectedIndex() + 1));
+                updateTable(months[index],dayComboBox.getSelectedIndex() + 1);
 
             }
         });
@@ -92,7 +90,7 @@ public class ManagePurchaseGUI {
                 Item itemSelected = (Item) itemsInDayTable.getValueAt(itemsInDayTable.getSelectedRow(), 0);
                 String key = itemSelected.getCategory();
                 months[monthIndex].removeItemInDay(key, dayIndex, itemSelected);
-                itemsInDayTable.setModel(getItemTable(months[monthIndex], dayIndex));
+                updateTable(months[monthIndex], dayIndex);
             }
         });
 
@@ -101,10 +99,12 @@ public class ManagePurchaseGUI {
             public void actionPerformed(ActionEvent e) {
                     int monthSelected = monthComboBox.getSelectedIndex() + 1;
                     int daySelected = dayComboBox.getSelectedIndex() + 1;
-                    itemsInDayTable.setModel(getItemTable(months[monthSelected],daySelected));
+                    updateTable(months[monthSelected],daySelected);
             }
         });
-}
+        totalSpending.addComponentListener(new ComponentAdapter() {
+        });
+    }
 
     public TableModel getItemTable(Month month, int day) {
 
@@ -128,6 +128,11 @@ public class ManagePurchaseGUI {
 
     }
 
+    public void updateTable(Month m, int day){
+        itemsInDayTable.setModel(getItemTable(m, day));
+        totalSpending.setText("Total Spending: $" + Double.toString(m.getDaySpending(day)));
+    }
+
     private JComboBox monthComboBox;
     private JComboBox dayComboBox;
     private JButton addButton;
@@ -140,6 +145,7 @@ public class ManagePurchaseGUI {
     private JPanel dateConfirmationPanel;
     private JTable itemsInDayTable;
     private JButton removeItemButton;
+    private JLabel totalSpending;
     private String[] monthComboArray = {"January", "February", "March", "April", "May", "June", "July", "August",
             "September", "October", "November", "December"};
 

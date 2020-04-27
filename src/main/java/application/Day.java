@@ -108,6 +108,7 @@ public class Day {
     public void removePurchase(String key, Item itemToRemove){
         if(purchases.containsKey(key)){
             purchases.get(key).remove(itemToRemove);
+            costOfPurchases = costOfPurchases - itemToRemove.getPrice();
         }
     }
 
