@@ -16,13 +16,10 @@ public class MonthlySpendingGUI extends JFrame{
         monthNameLabel.setText(thisMonth.getMonthName() + " Spending Summary: ");
         ArrayList<Item> monthlyItems = thisMonth.getAllItems();
 
-
         // creates table for all Items purchased this month
         itemSpendingTable.setModel(getItemTable(monthlyItems));
         categorySpendingTable.setModel(getCategoryTable(thisMonth));
         budgetTable.setModel(getBudgetTable(thisMonth,budget));
-
-
 
         setContentPane(mainPanel);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

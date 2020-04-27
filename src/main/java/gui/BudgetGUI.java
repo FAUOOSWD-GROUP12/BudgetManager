@@ -89,13 +89,6 @@ public class BudgetGUI {
 
             }
         });
-
-        //setContentPane(mainPanel);
-        //setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        //pack();
-        //setLocationRelativeTo(null);
-        //setVisible(true);
-
     }
 
     /**

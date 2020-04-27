@@ -1,4 +1,3 @@
-
 package main.java.application;
 
 import java.time.Year;
@@ -38,6 +37,7 @@ public class YearBudget {
 
     /**
      * getYearlySpending will get the cost of the whole year. It iterates through the months accumulating their costs.
+     *
      * @return the total cost of the year.
      */
     public Double getYearlySpending() {
@@ -50,26 +50,27 @@ public class YearBudget {
 
     /**
      * getMonth() returns the month specified by the indexes [1-12]. Index 0 will return null;
+     *
      * @param index - month index
      * @return the Month object in the Year
      */
 
-    public void setMonthlyBudget(Double monthlyBudget){
+    public void setMonthlyBudget(Double monthlyBudget) {
         this.monthlyBudget = monthlyBudget;
     }
 
-    public void setYearlyBudget(Double yearlyBudget){
+    public void setYearlyBudget(Double yearlyBudget) {
         this.yearlyBudget = yearlyBudget;
     }
 
-    public Double getMonthlyBudget(){
+    public Double getMonthlyBudget() {
         return this.monthlyBudget;
     }
 
-    public Double getYearlyBudget(){
+    public Double getYearlyBudget() {
         return this.yearlyBudget;
     }
-  
+
     public Month getMonth(int index) {
         return Months[index];
     }
@@ -90,9 +91,9 @@ public class YearBudget {
         return allDays;
     }
 
-    public ArrayList<String> getAllCategories(){
+    public ArrayList<String> getAllCategories() {
         allCategories = new ArrayList<>();
-        for(int i = 1; i < 13; i++){
+        for (int i = 1; i < 13; i++) {
             allCategories.addAll(Months[i].getCategoriesInMonth());
         }
         Set<String> s = new LinkedHashSet<>(allCategories);
@@ -100,16 +101,19 @@ public class YearBudget {
         return allCategories;
     }
 
-    public void setSavedCategories(ArrayList<String> categories){
+    public void setSavedCategories(ArrayList<String> categories) {
         savedCategories = categories;
     }
-    public ArrayList<String> getSavedCategories(){
+
+    public ArrayList<String> getSavedCategories() {
         return savedCategories;
     }
-    public void addSavedCategory(String categoryToAdd){
+
+    public void addSavedCategory(String categoryToAdd) {
         savedCategories.add(categoryToAdd);
     }
-    public void removeSavedCategory(String categoryToRemove){
+
+    public void removeSavedCategory(String categoryToRemove) {
         savedCategories.remove(categoryToRemove);
     }
 
@@ -125,8 +129,8 @@ public class YearBudget {
         }
     }
 
-    private Year currentYear;
-    private Month[] Months;
+    private final Year currentYear;
+    private final Month[] Months;
     private ArrayList<String> allCategories; //full category list used to search all items
     private ArrayList<String> savedCategories; //category list containing values user wants to see
     private Double yearlyBudget;

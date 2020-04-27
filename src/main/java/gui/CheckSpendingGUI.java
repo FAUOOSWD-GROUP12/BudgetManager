@@ -32,14 +32,6 @@ public class CheckSpendingGUI {
                 new MonthlySpendingGUI(yearReference.getMonth(monthIndex), yearReference.getMonthlyBudget());
             }
         });
-
-        //setContentPane(CheckSpendingPanel);
-        //setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        //pack();
-        //setLocationRelativeTo(null);
-        //setVisible(true);
-
-
     }
 
     public JPanel getCheckSpendingPanel(){

@@ -16,24 +16,13 @@ public class ManagePurchaseGUI {
 
     public ManagePurchaseGUI(Month[] months, ArrayList<String> categories) {
 
-        //JFrame frame = new JFrame("Add Purchase");
-
         ComboBoxModel monthModel = new DefaultComboBoxModel(monthComboArray);
         monthComboBox.setModel(monthModel);
 
         ComboBoxModel categoryModel = new DefaultComboBoxModel(categories.toArray());
         categoryComboBox.setModel(categoryModel);
 
-       // frame.setContentPane(addPurchasesGUI);
-        //frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         monthComboBox.setSelectedIndex(0);
-
-       // cancelButton.addActionListener(new ActionListener() {
-       //     @Override
-       //     public void actionPerformed(ActionEvent e) {
-       //         frame.dispose();
-       //     }
-       // });
 
         addButton.addActionListener(new ActionListener() {
             @Override
@@ -54,9 +43,6 @@ public class ManagePurchaseGUI {
                 updateTable(months[monthSelected],daySelected);
             }
         });
-
-       // frame.pack();
-       // frame.setVisible(true);
 
         monthComboBox.addActionListener(new ActionListener() {
             @Override
@@ -136,7 +122,6 @@ public class ManagePurchaseGUI {
     private JComboBox monthComboBox;
     private JComboBox dayComboBox;
     private JButton addButton;
-    private JButton cancelButton;
     private JTextField itemPurchasedTextField;
     private JTextField itemPriceTextField;
     private JComboBox categoryComboBox;
@@ -151,9 +136,4 @@ public class ManagePurchaseGUI {
 
     private int[] test;
 
-
-    private void createUIComponents() {
-        // TODO: place custom component creation code here
-        monthComboBox = new JComboBox();
-    }
 }

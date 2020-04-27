@@ -7,9 +7,10 @@ package main.java.application;
 public class Item {
     /**
      * Constructor will assign the Item a name and price Value.
-     * @param aName - name of the item purchased.
-     * @param aPrice - price of the item purchased.
-     * @param aCategory  - category the item belongs to.
+     *
+     * @param aName     - name of the item purchased.
+     * @param aPrice    - price of the item purchased.
+     * @param aCategory - category the item belongs to.
      */
     public Item(String aCategory, String aName, double aPrice) {
         this.name = aName;
@@ -19,6 +20,7 @@ public class Item {
 
     /**
      * getPrice gets the items price.
+     *
      * @return the price of the item.
      */
     public double getPrice() {
@@ -27,13 +29,16 @@ public class Item {
 
     /**
      * getName() returns the name of the item.
+     *
      * @return String name of the item purchased.
      */
     public String getName() {
         return name;
     }
 
-    public String getCategory(){ return category; }
+    public String getCategory() {
+        return category;
+    }
 
     @Override
     public String toString() {

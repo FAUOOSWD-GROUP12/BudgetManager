@@ -11,22 +11,10 @@ import java.util.ArrayList;
 
 public class CategoriesGUI {
     public CategoriesGUI(YearBudget year) {
-        //JFrame frame = new JFrame();
-        //frame.setContentPane(categoryManagerGUI);
-        //frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        //frame.pack();
-        //frame.setVisible(true);
 
         String columnName = "Categories";
 
         categoryTable.setModel(getCategoryTable(year));
-
-        //cancelButton.addActionListener(new ActionListener() {
-        //    @Override
-        //    public void actionPerformed(ActionEvent e) {
-        //            frame.dispose();
-        //    }
-        //});
 
         addButton.addActionListener(new ActionListener() {
             @Override
@@ -46,7 +34,6 @@ public class CategoriesGUI {
     }
 
     private JPanel categoryManagerGUI;
-    private JButton cancelButton;
     private JTextField categoryTextField;
     private JLabel categoryJLabel;
     private JButton addButton;
