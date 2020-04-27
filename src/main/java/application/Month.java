@@ -118,6 +118,14 @@ public class Month {
         }
         return items;
     }
+
+    public void removeItemInDay(String key, int dayIndex, Item itemToRemove){
+        days[dayIndex].removePurchase(key,itemToRemove);
+    }
+
+    public double getDaySpending(int d){
+       return days[d].getCostOfPurchases();
+    }
     private final Day[] days;
     private final int daysInMonth;
     private final String monthName;
