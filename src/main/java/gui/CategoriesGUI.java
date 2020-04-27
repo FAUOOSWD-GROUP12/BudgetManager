@@ -19,23 +19,35 @@ public class CategoriesGUI {
         addButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                year.addSavedCategory(categoryTextField.getText());
-                categoryTable.setModel(getCategoryTable(year));
+                String entry = categoryTextField.getText();
+                if (entry.equals("")){
+                    errorLabel.setText("The category is empty!");
+                }else{
+                    errorLabel.setText("");
+                    year.addSavedCategory(categoryTextField.getText());
+                    categoryTable.setModel(getCategoryTable(year));
+                    categoryTextField.setText("");
+                }
             }
         });
         removeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                year.removeSavedCategory((String) categoryTable.getValueAt(categoryTable.getSelectedRow(),
-                        categoryTable.getSelectedColumn()));
-                categoryTable.setModel(getCategoryTable(year));
+                try{
+                    errorLabel.setText("");
+                    year.removeSavedCategory((String) categoryTable.getValueAt(categoryTable.getSelectedRow(),
+                            categoryTable.getSelectedColumn()));
+                    categoryTable.setModel(getCategoryTable(year));
+                } catch (ArrayIndexOutOfBoundsException ex){
+                    errorLabel.setText("You must select a category to remove it.");
+                }
             }
         });
     }
 
     private JPanel categoryManagerGUI;
     private JTextField categoryTextField;
-    private JLabel categoryJLabel;
+    private JLabel errorLabel;
     private JButton addButton;
     private JButton removeButton;
     private JTable categoryTable;
