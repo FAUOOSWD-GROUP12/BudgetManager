@@ -15,6 +15,7 @@ public class YearLoader {
         this.yearToLoad = yearToManage;
         CSVFile = new File("src/main/resources/Test" + yearToLoad.toString() + ".csv");
         CategoryFile = new File("src/main/resources/TestCategory" + yearToLoad.toString() + ".csv");
+        BudgetFile = new File("src/main/resources/TestBudget" + yearToLoad.toString() + ".csv");
     }
 
     public YearBudget getYearFromFile(Year yearToLoad) {
@@ -66,6 +67,19 @@ public class YearLoader {
                 e.printStackTrace();
             }
         }
+        if(BudgetFile.exists()){
+            try (BufferedReader br = new BufferedReader(new FileReader(BudgetFile))){
+                String[] budget = CSVReader.readLine(br);
+                if (Double.parseDouble(budget[0]) > 0){
+                    loadedYear.setYearlyBudget(Double.parseDouble(budget[0]));
+                }
+                if (Double.parseDouble(budget[1]) > 0){
+                    loadedYear.setMonthlyBudget(Double.parseDouble(budget[1]));
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
 
         return loadedYear;
     }
@@ -75,19 +89,35 @@ public class YearLoader {
         try {
             CSVFile.createNewFile();
             CategoryFile.createNewFile();
+            BudgetFile.createNewFile();
             try {
                 FileWriter yearWriter = new FileWriter(CSVFile);
                 for (Day d : daysToSave) {
                     CSVWriter.writeLine(yearWriter, DayFormatter.formatDayToCSV(d));
                 }
+                yearWriter.flush();
+                yearWriter.close();
                 if (!(loadedYear.getSavedCategories().contains("") && loadedYear.getSavedCategories().size() == 1)){
                     FileWriter categoryWriter = new FileWriter(CategoryFile);
                     CSVWriter.writeLine(categoryWriter, loadedYear.getSavedCategories());
                     categoryWriter.flush();
                     categoryWriter.close();
                 }
-                yearWriter.flush();
-                yearWriter.close();
+                FileWriter budgetWriter = new FileWriter(BudgetFile);
+                ArrayList<String> budgetList = new ArrayList<>();
+                if(loadedYear.getYearlyBudget() == 0){
+                    budgetList.add("0");
+                }else{
+                    budgetList.add(Double.toString(loadedYear.getYearlyBudget()));
+                }
+                if (loadedYear.getMonthlyBudget() == 0){
+                    budgetList.add("0");
+                }else{
+                    budgetList.add(Double.toString(loadedYear.getMonthlyBudget()));
+                }
+                CSVWriter.writeLine(budgetWriter, budgetList);
+                budgetWriter.flush();
+                budgetWriter.close();
 
             } catch (IOException e) {
                 e.printStackTrace();
@@ -102,4 +132,5 @@ public class YearLoader {
     private Year yearToLoad;
     private YearBudget loadedYear;
     private File CategoryFile;
+    private File BudgetFile;
 }
