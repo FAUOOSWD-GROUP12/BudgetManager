@@ -117,17 +117,6 @@ public class YearBudget {
         savedCategories.remove(categoryToRemove);
     }
 
-    /**
-     * Prints months with corresponding number of days
-     */
-    public void testMonths() {
-
-        for (int i = 1; i < 13; i++) {
-            System.out.println(this.Months[i].getMonthName());
-            System.out.println(this.Months[i].getDaysInMonth());
-
-        }
-    }
 
     private final Year currentYear;
     private final Month[] Months;
