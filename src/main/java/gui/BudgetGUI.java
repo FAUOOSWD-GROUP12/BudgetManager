@@ -7,19 +7,15 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * Panel that allows user to set/update the yearly and monthly budget.
+ */
 public class BudgetGUI {
 
-    private JTextPane currentBudgetTextPane;
-    private JTextField monthlyBudgetTextField;
-    private JTextField yearlyBudgetTextField;
-    private JPanel mainPanel;
-    private JPanel inputPanel;
-    private JLabel yearlyBudgetLabel;
-    private JLabel monthlyBudgetLabel;
-    private JTextPane ErrorMessageTextPane;
-    private JButton setYearlyBudgetButton;
-    private JButton setMonthlyBudgetButton;
-
+    /**
+     * Initializer. Sets the budgets if they are within a reasonable limit and valid.
+     * @param yearReference Used to manipulate the month and year budget
+     */
     public BudgetGUI(YearBudget yearReference) {
         //super("Manage your Budget");
         setCurrentBudgetTextPane(yearReference.getMonthlyBudget(), yearReference.getYearlyBudget());
@@ -94,8 +90,8 @@ public class BudgetGUI {
     /**
      * Verifies if current yearly budget allows for proposed monthly budget
      *
-     * @param newMonthlyBudget
-     * @param currentYearlyBudget
+     * @param newMonthlyBudget monthly budget to be tested
+     * @param currentYearlyBudget yearly budget used for testing
      * @return true if it will fit(or year is not set), false if it will not
      */
     public boolean willMonthlyBudgetFit(Double newMonthlyBudget, Double currentYearlyBudget) {
@@ -112,8 +108,8 @@ public class BudgetGUI {
     /**
      * Verifies if new monthly budget will fit within the current yearly budget(if it's set)
      *
-     * @param newYearlyBudget
-     * @param currentMonthlyBudget
+     * @param newYearlyBudget budget to be tested
+     * @param currentMonthlyBudget budget used for testing
      * @return true if monthly budget will fit (or yearlyBudget is not set), false if it will not fit
      */
     public boolean willYearlyBudgetFit(Double newYearlyBudget, Double currentMonthlyBudget) {
@@ -125,9 +121,7 @@ public class BudgetGUI {
             }
         }
         return true;
-
     }
-
 
     /**
      * Displays budgets set for month and year, or "Budget not set"  if no budget is set
@@ -150,7 +144,22 @@ public class BudgetGUI {
         currentBudgetTextPane.setText(budgetMessage);
     }
 
+    /**
+     * Returns main panel
+     * @return main panel object
+     */
     public JPanel getMainPanel(){
         return mainPanel;
     }
+    private JTextPane currentBudgetTextPane;
+    private JTextField monthlyBudgetTextField;
+    private JTextField yearlyBudgetTextField;
+    private JPanel mainPanel;
+    private JPanel inputPanel;
+    private JLabel yearlyBudgetLabel;
+    private JLabel monthlyBudgetLabel;
+    private JTextPane ErrorMessageTextPane;
+    private JButton setYearlyBudgetButton;
+    private JButton setMonthlyBudgetButton;
+
 }

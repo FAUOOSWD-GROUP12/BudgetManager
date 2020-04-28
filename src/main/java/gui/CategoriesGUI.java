@@ -9,11 +9,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+/**
+ * Panel for removing,adding, and displaying current categories.
+ */
 public class CategoriesGUI {
     public CategoriesGUI(YearBudget year) {
 
         String columnName = "Categories";
-
         categoryTable.setModel(getCategoryTable(year));
 
         addButton.addActionListener(new ActionListener() {
@@ -33,13 +35,11 @@ public class CategoriesGUI {
         });
     }
 
-    private JPanel categoryManagerGUI;
-    private JTextField categoryTextField;
-    private JLabel categoryJLabel;
-    private JButton addButton;
-    private JButton removeButton;
-    private JTable categoryTable;
-
+    /**
+     * Creates and returns table of current saved categories.
+     * @param yearReference used to retrieve categories
+     * @return TableModel containing list of categories
+     */
     public TableModel getCategoryTable(YearBudget yearReference) {
 
         ArrayList<String> yearCategorySpendingArrayList = yearReference.getSavedCategories();
@@ -67,7 +67,20 @@ public class CategoriesGUI {
                     }
                 };
     }
+
+    /**
+     * Returns category manager GUI
+     * @return categoryManagerGUI object
+     */
     public JPanel getCategoryManagerGUI(){
         return categoryManagerGUI;
     }
+
+    private JPanel categoryManagerGUI;
+    private JTextField categoryTextField;
+    private JLabel categoryJLabel;
+    private JButton addButton;
+    private JButton removeButton;
+    private JTable categoryTable;
+
 }

@@ -9,8 +9,16 @@ import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
+/**
+ *  Creates the window for Budget Manager Application, and saves it's data upon exit
+ */
 public class MainMenuGUI extends JFrame {
-
+    /**
+     * Loads saved data from previous sessions, creates window, and saves data upon window exiting
+     * @param title Title of window
+     * @param year refernce to year object
+     * @param aYearLoader used to save/load data
+     */
     public MainMenuGUI(String title, YearBudget year, YearLoader aYearLoader) {
         super(title);
         yl = aYearLoader;

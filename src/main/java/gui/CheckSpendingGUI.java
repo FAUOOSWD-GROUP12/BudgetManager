@@ -7,13 +7,15 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * Panel that presents user with option to view spending summary of full year or a specific month
+ */
 public class CheckSpendingGUI {
 
-    private JPanel CheckSpendingPanel;
-    private JButton allButton;
-    private JButton viewMonthButton;
-    private JComboBox monthSelectionComboBox;
-
+    /**
+     * Initializer that creates buttons and dropdown to view spending summaries.
+     * @param yearReference used to provide spending data
+     */
     public CheckSpendingGUI(YearBudget yearReference) {
 
         // Displays window with spending for the entire year
@@ -26,6 +28,7 @@ public class CheckSpendingGUI {
 
         viewMonthButton.addActionListener(new ActionListener() {
             @Override
+            // Displays info for specific month
             public void actionPerformed(ActionEvent e) {
                 int monthIndex = monthSelectionComboBox.getSelectedIndex() + 1;
                 // display info for month
@@ -34,8 +37,16 @@ public class CheckSpendingGUI {
         });
     }
 
+    /**
+     * returns CheckSpendingPanel
+     * @return spending panel
+     */
     public JPanel getCheckSpendingPanel(){
         return CheckSpendingPanel;
     }
 
+    private JPanel CheckSpendingPanel;
+    private JButton allButton;
+    private JButton viewMonthButton;
+    private JComboBox monthSelectionComboBox;
 }

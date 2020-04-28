@@ -10,6 +10,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * Used to load data(items, budgets, categories) from CSV and load a YearBudget object, and save YearBudget's object's data.
+ */
 public class YearLoader {
     YearLoader(Year yearToManage) {
         this.yearToLoad = yearToManage;
@@ -18,6 +21,11 @@ public class YearLoader {
         BudgetFile = new File("src/main/resources/Budget" + yearToLoad.toString() + ".csv");
     }
 
+    /**
+     * Gets yearly information (items, budgets, categories) from a save file
+     * @param yearToLoad Year object used to get data about current year
+     * @return YearBudget info that returns all data loaded onto it
+     */
     public YearBudget getYearFromFile(Year yearToLoad) {
         // Create a new, empty YearBudget
         loadedYear = new YearBudget(yearToLoad);
@@ -83,6 +91,9 @@ public class YearLoader {
         return loadedYear;
     }
 
+    /**
+     * Saves YearBudget object to a CSV file, saving items ,categories, and budget
+     */
     public void saveYearToFile() {
         List<Day> daysToSave = loadedYear.getAllDays();
         try {

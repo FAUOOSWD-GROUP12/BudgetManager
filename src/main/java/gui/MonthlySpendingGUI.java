@@ -9,8 +9,16 @@ import java.util.HashMap;
 import java.util.Map;
 import javax.swing.*;
 
+/**
+ * Panel that displays information about user's spending for a specific month
+ */
 public class MonthlySpendingGUI extends JFrame{
 
+    /**
+     * Initializer that creates three tables: item table, budget table, and category spending table.
+     * @param thisMonth used to get info about current month
+     * @param budget monthly budget
+     */
     public MonthlySpendingGUI(Month thisMonth, Double budget){
         super(thisMonth.getMonthName() + " Spending Summary");
         monthNameLabel.setText(thisMonth.getMonthName() + " Spending Summary: ");
@@ -165,6 +173,11 @@ public class MonthlySpendingGUI extends JFrame{
         return dataModel;
     }
 
+    /**
+     * Coverts HashMap containing category:spending pairs to a 2D array to be used by a TableModel object
+     * @param categorySpendingHashMap contains category:spending
+     * @return 2D array
+     */
     public String[][] hashMapTo2DArray(HashMap<String, Double> categorySpendingHashMap) {
         String[][] categorySpendingArr = new String[categorySpendingHashMap.size()][2];
         int row = 0;
@@ -176,7 +189,6 @@ public class MonthlySpendingGUI extends JFrame{
         }
         return categorySpendingArr;
     }
-
 
     private JPanel mainPanel;
     private JPanel middlePanel;
