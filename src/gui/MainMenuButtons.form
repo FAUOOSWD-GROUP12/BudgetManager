@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="gui.MainMenuButtons">
+  <grid id="27dc6" binding="mainMenuButtons" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
+    <constraints>
+      <xy x="20" y="20" width="576" height="400"/>
+    </constraints>
+    <properties>
+      <preferredSize width="600" height="300"/>
+    </properties>
+    <border type="none"/>
+    <children>
+      <component id="2f227" class="javax.swing.JButton" binding="addItemButton" default-binding="true">
+        <constraints/>
+        <properties>
+          <text value="Manage Items"/>
+        </properties>
+      </component>
+      <component id="ba568" class="javax.swing.JButton" binding="manageCategoriesButton" default-binding="true">
+        <constraints/>
+        <properties>
+          <text value="Manage Categories"/>
+        </properties>
+      </component>
+      <component id="3ca64" class="javax.swing.JButton" binding="manageBudgetButton" default-binding="true">
+        <constraints/>
+        <properties>
+          <text value="Manage Budget"/>
+        </properties>
+      </component>
+      <component id="70f" class="javax.swing.JButton" binding="checkSpendingButton" default-binding="true">
+        <constraints/>
+        <properties>
+          <text value="Check Spending"/>
+        </properties>
+      </component>
+      <grid id="b1ce" binding="editorField" layout-manager="CardLayout" hgap="0" vgap="0">
+        <constraints/>
+        <properties/>
+        <border type="none"/>
+        <children/>
+      </grid>
+    </children>
+  </grid>
+</form>
