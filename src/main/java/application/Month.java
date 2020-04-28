@@ -3,6 +3,9 @@ package main.java.application;
 
 import java.util.*;
 
+/**
+ * Month class manages all days in a month, and provides methods for manipulating data of it's days
+ */
 public class Month {
 
     /**
@@ -120,10 +123,21 @@ public class Month {
         return items;
     }
 
+    /**
+     * Removes item based on args provided
+     * @param key category of item to be removed
+     * @param dayIndex day item is in
+     * @param itemToRemove item to be removed
+     */
     public void removeItemInDay(String key, int dayIndex, Item itemToRemove) {
         days[dayIndex].removePurchase(key, itemToRemove);
     }
 
+    /**
+     * Get spendings for a specific day
+     * @param d index of day
+     * @return sum of all purchases for day d
+     */
     public double getDaySpending(int d) {
         return days[d].getCostOfPurchases();
     }
