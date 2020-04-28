@@ -26,20 +26,29 @@ public class ManagePurchaseGUI {
         addButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String itemName = itemPurchasedTextField.getText();
-                double itemPrice = Double.parseDouble(itemPriceTextField.getText());
-                String categorySelected = (String) categoryComboBox.getSelectedItem();
-                int monthSelected = monthComboBox.getSelectedIndex() + 1;
-                int daySelected = dayComboBox.getSelectedIndex() + 1;
-
-                System.out.println("Item name:" + itemName
-                        + " Item Price:" + itemPrice
-                        + " Category:" + categorySelected
-                        + " Month Selected:" + monthSelected
-                        + " Day Selected:" + daySelected);
-                System.out.println(months[monthSelected].toString());
-                months[monthSelected].addItemToDay(categorySelected, new Item(categorySelected, itemName, itemPrice), daySelected);
-                updateTable(months[monthSelected],daySelected);
+                try{
+                    String itemName = itemPurchasedTextField.getText();
+                    double itemPrice = Double.parseDouble(itemPriceTextField.getText());
+                    String categorySelected = (String) categoryComboBox.getSelectedItem();
+                    int monthSelected = monthComboBox.getSelectedIndex() + 1;
+                    int daySelected = dayComboBox.getSelectedIndex() + 1;
+                    if (categorySelected == null){
+                        errorReport.setText("You must create or use a category!");
+                    } else if(daySelected == 0){
+                        errorReport.setText("Day Selected is not a Day!");
+                    } else if(itemName.equals("")){
+                        errorReport.setText("Item has to have a name!");
+                    }else{
+                        months[monthSelected].addItemToDay(categorySelected, new Item(categorySelected, itemName, itemPrice), daySelected);
+                        itemPurchasedTextField.setText("");
+                        itemPriceTextField.setText("");
+                        updateTable(months[monthSelected],daySelected);
+                    }
+                } catch (NullPointerException ex){
+                    errorReport.setText("You left something empty!");
+                } catch (NumberFormatException ex){
+                    errorReport.setText("The price is not a number.");
+                }
             }
         });
 
@@ -130,9 +139,7 @@ public class ManagePurchaseGUI {
     private JTable itemsInDayTable;
     private JButton removeItemButton;
     private JLabel totalSpending;
+    private JLabel errorReport;
     private String[] monthComboArray = {"January", "February", "March", "April", "May", "June", "July", "August",
             "September", "October", "November", "December"};
-
-    private int[] test;
-
 }

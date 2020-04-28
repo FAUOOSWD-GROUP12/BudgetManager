@@ -162,6 +162,7 @@ public class YearBudget {
         savedCategories.add(categoryToAdd);
     }
 
+
     /**
      * Removes a saved category
      * @param categoryToRemove category to be removed
@@ -169,7 +170,7 @@ public class YearBudget {
     public void removeSavedCategory(String categoryToRemove) {
         savedCategories.remove(categoryToRemove);
     }
-
+  
     private final Year currentYear;
     private final Month[] Months;
     private ArrayList<String> allCategories; //full category list used to search all items

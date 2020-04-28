@@ -27,7 +27,6 @@ public class MainMenuGUI extends JFrame {
             public void windowClosing(WindowEvent e) {
                 super.windowClosing(e);
                 yl.saveYearToFile();
-                System.out.println("Closing");
             }
         });
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
