@@ -11,7 +11,6 @@ import java.awt.event.ComponentAdapter;
 import java.util.ArrayList;
 
 
-
 public class ManagePurchaseGUI {
 
     public ManagePurchaseGUI(Month[] months, ArrayList<String> categories) {

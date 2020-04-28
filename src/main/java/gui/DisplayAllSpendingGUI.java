@@ -9,16 +9,14 @@ import java.awt.*;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Window displaying information in tables about user's spending in the past year
+ */
 public class DisplayAllSpendingGUI extends JFrame {
-
-    private JTable categorySpendingTable;
-    private JScrollPane categorySpendingScrollPane;
-    private JPanel panel;
-    private JLabel titleLabel;
-    private JTextPane totalSpendingPane;
-    private JTable budgetTable;
-    private JScrollPane budgetScrollPane;
-
+    /**
+     * Initializer that creates and displays a budget table and category spending table
+     * @param yearReference used to get data about yearly spending
+     */
     public DisplayAllSpendingGUI(YearBudget yearReference) {
         super("All Spending Summary");
 
@@ -36,7 +34,6 @@ public class DisplayAllSpendingGUI extends JFrame {
 
     /**
      * Accepts hashMap<String, Double> and returns it as a 2D array
-     *
      * @return categorySpendingArr - array with categories as col 0 and total price as col 1
      */
 
@@ -54,7 +51,7 @@ public class DisplayAllSpendingGUI extends JFrame {
 
     /**
      * Gets hashMap from yearReference, converts it to a 2D array, and uses 2D array to create table
-     * @param yearReference
+     * @param yearReference used to get data about yearly categorical spending
      * @return table with All categories and corresponding spending
      */
     public TableModel getCategoryTable(YearBudget yearReference) {
@@ -92,6 +89,11 @@ public class DisplayAllSpendingGUI extends JFrame {
         return dataModel;
     }
 
+    /**
+     * Creates and returns a table containing the user's total spending, budget, and a comparison between budget/spending
+     * @param yearReference Used to get data about spending and budget
+     * @return table containg "total spent", "budget", "differece" and "Budget Met" columns
+     */
     public TableModel getBudgetTable(YearBudget yearReference){
 
         Double totalSpending = yearReference.getYearlySpending();
@@ -115,15 +117,29 @@ public class DisplayAllSpendingGUI extends JFrame {
 
         TableModel dataModel = new
                 AbstractTableModel() {
+                    /**
+                     * Returns number of rows in the table (1)
+                     * @return number of rows
+                     */
                     @Override
                     public int getRowCount() {
                         return 1;
                     }
 
+                    /**
+                     * Returns number of columns in the budget table
+                     * @return
+                     */
                     @Override
                     public int getColumnCount() {
                         return 4;
                     }
+
+                    /**
+                     * Creates column names for budget table
+                     * @param column column number
+                     * @return String of column name
+                     */
                     @Override
                     public String getColumnName(int column) {
 
@@ -140,6 +156,12 @@ public class DisplayAllSpendingGUI extends JFrame {
 
                     }
 
+                    /**
+                     *
+                     * @param rowIndex index of array
+                     * @param columnIndex column of array
+                     * @return value in budget
+                     */
                     @Override
                     public Object getValueAt(int rowIndex, int columnIndex) {
                         return budgetArr[0][columnIndex];
@@ -149,4 +171,11 @@ public class DisplayAllSpendingGUI extends JFrame {
         return dataModel;
     }
 
+    private JTable categorySpendingTable;
+    private JScrollPane categorySpendingScrollPane;
+    private JPanel panel;
+    private JLabel titleLabel;
+    private JTextPane totalSpendingPane;
+    private JTable budgetTable;
+    private JScrollPane budgetScrollPane;
 }
